@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="jin.com.edu.ordenesservicios.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="1223.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="687.0" fitWidth="1506.0" layoutX="88.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-283.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../../login.png" />
+         </image>
+      </ImageView>
+      <TextField disable="true" layoutX="695.0" layoutY="244.0" opacity="0.0" prefHeight="56.0" prefWidth="411.0" promptText="         Usuario         " style="-fx-border-radius: 35; -fx-border-color: #00008B#00008B; -fx-background-radius: 35; -fx-opacity: 0.5;">
+         <font>
+            <Font name="Arial Black" size="22.0" />
+         </font>
+      </TextField>
+      <TextField disable="true" layoutX="695.0" layoutY="354.0" opacity="0.0" prefHeight="56.0" prefWidth="411.0" promptText="         Contraseña         " style="-fx-border-radius: 35; -fx-border-color: #00008B#00008B; -fx-background-radius: 35; -fx-opacity: 0.5;">
+         <font>
+            <Font name="Arial Black" size="22.0" />
+         </font>
+      </TextField>
+      <Button disable="true" layoutX="826.0" layoutY="464.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="135.0" style="-fx-background-color: #ADD8E6#ADD8E6;" text="INICIAR">
+         <font>
+            <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
