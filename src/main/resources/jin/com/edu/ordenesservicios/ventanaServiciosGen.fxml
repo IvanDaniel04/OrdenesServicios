@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="610.0" prefWidth="1080.0" type="AnchorPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jin.com.edu.ordenesservicios.controllers.serviciosGenController">
+<AnchorPane prefHeight="610.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jin.com.edu.ordenesservicios.controllers.serviciosGenController">
    <children>
       <ImageView fitHeight="610.0" fitWidth="1080.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -27,22 +27,23 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TableView layoutX="38.0" layoutY="205.0" prefHeight="291.0" prefWidth="1009.0">
+      <TableView fx:id="tblServcios" layoutX="38.0" layoutY="205.0" prefHeight="291.0" prefWidth="1009.0">
         <columns>
-          <TableColumn fx:id="columnId" prefWidth="73.59997177124023" text="N. Registro" />
-          <TableColumn prefWidth="88.80001831054688" text="Fecha" />
-            <TableColumn prefWidth="314.3999481201172" text="Descripción" />
-            <TableColumn prefWidth="148.0" text="Area solicitante" />
-            <TableColumn prefWidth="150.4000244140625" text="Nombre solicitante" />
-            <TableColumn minWidth="0.0" prefWidth="142.39996337890625" text="Ubicacion" />
+          <TableColumn fx:id="clmId" prefWidth="73.59997177124023" text="N. Registro" />
+          <TableColumn fx:id="clmFecha" prefWidth="88.80001831054688" text="Fecha" />
+            <TableColumn fx:id="clmDescripcion" prefWidth="314.3999481201172" text="Descripción" />
+            <TableColumn fx:id="clmArea" prefWidth="148.0" text="Area solicitante" />
+            <TableColumn fx:id="clmNombreS" prefWidth="150.4000244140625" text="Nombre solicitante" />
+            <TableColumn fx:id="clmUbicacion" minWidth="0.0" prefWidth="142.39996337890625" text="Ubicacion" />
             <TableColumn minWidth="0.0" prefWidth="74.40006103515623" text="Estatus" />
         </columns>
       </TableView>
-      <TextField layoutX="222.0" layoutY="144.0" prefHeight="30.0" prefWidth="590.0" />
+      <TextField fx:id="txtBuscar" layoutX="222.0" layoutY="144.0" onKeyTyped="#Buscar" prefHeight="30.0" prefWidth="590.0" />
       <ImageView fitHeight="46.0" fitWidth="52.0" layoutX="1014.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../user.png" />
          </image>
       </ImageView>
+      
    </children>
-</fx:root>
+</AnchorPane>

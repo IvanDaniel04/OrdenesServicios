@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import jin.com.edu.ordenesservicios.EnlaceNB;
 import jin.com.edu.ordenesservicios.clases.ServiciosGen;
 
@@ -16,15 +17,13 @@ import java.sql.Statement;
 public class serviciosGenController {
 
     @FXML
-    private TextField txtBuscarS;
-    @FXML
-    private Button btnBuscar;
-    @FXML private TableColumn columnId;
-    @FXML private TableColumn columnFecha;
-    @FXML private TableColumn columnDescripcion;
-    @FXML private TableColumn columnArea;
-    @FXML private TableColumn columnNombreS;
-    @FXML private TableColumn columnUbicacion;
+    private TextField txtBuscar;
+    @FXML private TableColumn clmId;
+    @FXML private TableColumn clmFecha;
+    @FXML private TableColumn clmDescripcion;
+    @FXML private TableColumn clmArea;
+    @FXML private TableColumn clmNombreS;
+    @FXML private TableColumn clmUbicacion;
     @FXML
     private ImageView ivUsuarios;
     @FXML
@@ -50,18 +49,52 @@ public class serviciosGenController {
             while (r.next()){
                 tblServcios.setItems(servciosGen);
                 servciosGen.add(new ServiciosGen(
-                        r.getInt("N. Registro"),
-                        r.getString("Area solicitante"),
-                        r.getString("Descripción"),
-                        r.getString("Fecha"),
-                        r.getString("Nombre solicitante"),
-                        r.getString("Ubicacion")));
-                columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-                columnArea.setCellValueFactory(new PropertyValueFactory<>("area"));
-                columnDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-                columnFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-                columnNombreS.setCellValueFactory(new PropertyValueFactory<>("nombresolicitante"));
-                columnUbicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
+                        r.getInt("id"),
+                        r.getString("area"),
+                        r.getString("descripcion"),
+                        r.getString("fecha"),
+                        r.getString("nombresolicitante"),
+                        r.getString("ubicacion")));
+                clmId.setCellValueFactory(new PropertyValueFactory<>("id"));
+                clmArea.setCellValueFactory(new PropertyValueFactory<>("area"));
+                clmDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+                clmFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+                clmNombreS.setCellValueFactory(new PropertyValueFactory<>("nombresolicitante"));
+                clmUbicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
+
+            }
+            stm.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        tblServcios.refresh();
+
+    }
+    @FXML
+    private void Buscar(KeyEvent event) {
+
+        try{
+            Connection c = EnlaceNB.getConexion();
+            Statement stm = c.createStatement();
+            String sql = "SELECT * FROM Libro WHERE TITULO LIKE '"+txtBuscar.getText()+"%'";
+            ResultSet r = stm.executeQuery(sql);
+            servciosGen.clear();
+            while (r.next()){
+                tblServcios.setItems(servciosGen);
+                servciosGen.add(new ServiciosGen(
+                        r.getInt("id"),
+                        r.getString("area"),
+                        r.getString("descripcion"),
+                        r.getString("fecha"),
+                        r.getString("nombresolicitante"),
+                        r.getString("ubicacion")));
+                clmId.setCellValueFactory(new PropertyValueFactory<>("id"));
+                clmArea.setCellValueFactory(new PropertyValueFactory<>("area"));
+                clmDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+                clmFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+                clmNombreS.setCellValueFactory(new PropertyValueFactory<>("nombresolicitante"));
+                clmUbicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
 
             }
             stm.close();
