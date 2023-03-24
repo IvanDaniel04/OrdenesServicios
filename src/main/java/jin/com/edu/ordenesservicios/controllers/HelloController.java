@@ -1,4 +1,4 @@
-package jin.com.edu.ordenesservicios;
+package jin.com.edu.ordenesservicios.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
