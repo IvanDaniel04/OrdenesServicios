@@ -18,9 +18,9 @@
             <Image url="@../../../../fondo.png" />
          </image>
       </ImageView>
-      <Label layoutX="36.0" layoutY="150.0" prefHeight="70.0" prefWidth="266.0" text="No.Servicio:">
+      <Label layoutX="813.0" layoutY="104.0" prefHeight="29.0" prefWidth="101.0" text="No.Servicio:">
          <font>
-            <Font name="Arial Black" size="25.0" />
+            <Font name="Arial Black" size="15.0" />
          </font>
       </Label>
       <Label layoutX="36.0" layoutY="318.0" text="Observaciones:">
@@ -48,27 +48,27 @@
             <Font name="Arial Black" size="25.0" />
          </font>
       </Label>
-      <DatePicker editable="false" layoutX="882.0" layoutY="168.0" prefHeight="36.0" prefWidth="154.0" />
-      <Label layoutX="209.0" layoutY="166.0" prefHeight="34.0" prefWidth="22.0" text="1">
+      <DatePicker fx:id="dpFinalizacion" editable="false" layoutX="882.0" layoutY="168.0" prefHeight="36.0" prefWidth="154.0" />
+      <Label fx:id="labNoServicio" layoutX="915.0" layoutY="107.0" prefHeight="23.0" prefWidth="9.0" text="1">
          <font>
-            <Font name="Arial Black" size="25.0" />
+            <Font name="Arial Black" size="15.0" />
          </font>
       </Label>
-      <ComboBox layoutX="733.0" layoutY="238.0" prefHeight="36.0" prefWidth="304.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 5;" />
+      <ComboBox fx:id="cbOperadores" layoutX="733.0" layoutY="238.0" prefHeight="36.0" prefWidth="304.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 5;" />
       <Label layoutX="14.0" layoutY="74.0" text="Modificar Orden">
          <font>
             <Font name="Arial Black" size="40.0" />
          </font>
       </Label>
-      <TextField layoutX="302.0" layoutY="238.0" prefHeight="36.0" prefWidth="198.0" />
-      <TextArea layoutX="35.0" layoutY="356.0" prefHeight="94.0" prefWidth="465.0" />
-      <TextArea layoutX="580.0" layoutY="356.0" prefHeight="94.0" prefWidth="465.0" />
+      <TextField fx:id="txtTE" layoutX="302.0" layoutY="238.0" prefHeight="36.0" prefWidth="198.0" />
+      <TextArea fx:id="txaObservaciones" layoutX="35.0" layoutY="356.0" prefHeight="94.0" prefWidth="465.0" />
+      <TextArea fx:id="txaDescripcion" layoutX="580.0" layoutY="356.0" prefHeight="94.0" prefWidth="465.0" />
       <Button layoutX="977.0" layoutY="487.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-border-color: #640BFF; -fx-border-radius: 4;" text="Regresar">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
       </Button>
-      <Label layoutX="977.0" layoutY="83.0" text="00/00/0000">
+      <Label fx:id="labFregistro" layoutX="977.0" layoutY="83.0" text="00/00/0000">
          <font>
             <Font name="Arial Black" size="13.0" />
          </font>
@@ -78,5 +78,12 @@
             <Font name="Arial Black" size="25.0" />
          </font>
       </Label>
+      <ComboBox fx:id="cbestatus" layoutX="197.0" layoutY="174.0" prefHeight="36.0" prefWidth="304.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 5;" />
+      <Label layoutX="35.0" layoutY="173.0" text="Estatus:">
+         <font>
+            <Font name="Arial Black" size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="894.0" layoutY="491.0" mnemonicParsing="false" onAction="#modifcarOrden" text="Confirmar" />
    </children>
 </AnchorPane>
