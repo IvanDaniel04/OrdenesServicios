@@ -46,7 +46,7 @@ public class HelloController {
             labAlerta.setVisible(false);
         } else {
             try {
-                connection = EnlaceNB.getConexion();
+                connection = EnlaceJazmin.getConexion();
                 pst = connection.prepareStatement("select correo, contraseña from usuarios where correo='" + correo
                         + "' and contraseña ='" + contrasena + "'");
                 rs = pst.executeQuery();
