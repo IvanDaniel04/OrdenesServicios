@@ -1,4 +1,4 @@
-package jin.com.edu.ordenesservicios.controllers;
+package jin.com.edu.ordenesservicios;
 
 
 import javafx.fxml.FXML;

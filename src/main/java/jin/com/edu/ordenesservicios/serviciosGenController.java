@@ -1,4 +1,4 @@
-package jin.com.edu.ordenesservicios.controllers;
+package jin.com.edu.ordenesservicios;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
