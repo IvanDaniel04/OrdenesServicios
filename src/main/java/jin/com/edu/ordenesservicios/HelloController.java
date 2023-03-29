@@ -50,6 +50,7 @@ public class HelloController {
                 pst = connection.prepareStatement("select correo, contraseña from usuarios where correo='" + correo
                         + "' and contraseña ='" + contrasena + "'");
                 rs = pst.executeQuery();
+
                 if (rs.next()) {
                     System.out.println("Abrir ventana");
                     HelloApplication.setVista("ventanaServiciosGen");

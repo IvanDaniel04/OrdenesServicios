@@ -34,4 +34,12 @@ public class user {
         this.contrasena1 = contrasena1;
         this.tipo1 = tipo1;
     }
+    public String toString (){
+        return this.tipo1;
+
+    }
+
+    public user(String tipo1) {
+        this.tipo1 = tipo1;
+    }
 }

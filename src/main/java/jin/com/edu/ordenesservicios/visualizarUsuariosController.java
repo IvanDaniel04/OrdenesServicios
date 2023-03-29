@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import jin.com.edu.ordenesservicios.EnlaceIvan;
 import jin.com.edu.ordenesservicios.clases.user;
@@ -18,6 +19,7 @@ public class visualizarUsuariosController{
     @FXML TableColumn<user, String> tbcCorreo;
     @FXML TableColumn<user, String> tbcContrasena;
     @FXML TableColumn<user, String> tbcTipo;
+
 
     ObservableList<user> usuariosTabla;
 
