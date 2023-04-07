@@ -63,7 +63,7 @@
       <TextField fx:id="txtTE" layoutX="302.0" layoutY="238.0" prefHeight="36.0" prefWidth="198.0" />
       <TextArea fx:id="txaObservaciones" layoutX="35.0" layoutY="356.0" prefHeight="94.0" prefWidth="465.0" />
       <TextArea fx:id="txaDescripcion" layoutX="580.0" layoutY="356.0" prefHeight="94.0" prefWidth="465.0" />
-      <Button layoutX="977.0" layoutY="487.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-border-color: #640BFF; -fx-border-radius: 4;" text="Regresar">
+      <Button fx:id="btnRegresar" layoutX="977.0" layoutY="487.0" mnemonicParsing="false" onAction="#regresar" style="-fx-background-color: #FFFFFF; -fx-border-color: #640BFF; -fx-border-radius: 4;" text="Regresar">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>

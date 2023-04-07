@@ -12,7 +12,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ventanaNuevoUs.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         scene = new Scene(fxmlLoader.load());
         stage.setTitle("LOGIN!");
         stage.setScene(scene);
@@ -27,6 +27,14 @@ public class HelloApplication extends Application {
             e.printStackTrace();
 
         }
+    }
+
+    public static Scene getScene() {
+        return scene;
+    }
+
+    public static void setScene(Scene scene) {
+        HelloApplication.scene = scene;
     }
 
     public static void main(String[] args) {

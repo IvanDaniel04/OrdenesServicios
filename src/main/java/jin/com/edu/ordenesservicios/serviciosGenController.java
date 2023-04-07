@@ -3,12 +3,18 @@ package jin.com.edu.ordenesservicios;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import jin.com.edu.ordenesservicios.EnlaceNB;
 import jin.com.edu.ordenesservicios.clases.ServiciosGen;
+import jin.com.edu.ordenesservicios.clases.Tarea;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -35,13 +41,39 @@ public class serviciosGenController {
         System.out.println("Iniciando...");
         actualizarServcios();
 
+
+
+    }
+    public void DobleClick(MouseEvent mevt){
+        if (mevt.getClickCount()>1){
+            if (tblServcios.getSelectionModel().getSelectedItem()!=null){
+                try {
+                    Stage stage = new Stage();//Crear una nueva ventana
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("ventanaModificar.fxml"));
+                    Scene escena = new Scene(loader.load());
+                    stage.setScene(escena);//agregar la escena de la ventana
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    modificarController mc =  loader.getController();
+
+                    System.out.println();
+                    actualizarServcios();
+                    //ch200111036@chapala.tecmm.edu.mx
+
+                    //stage.show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
     }
 
 
     private void actualizarServcios() {
 
         try{
-            Connection c = EnlaceNB.getConexion();
+            Connection c = EnlaceIvan.getConexion();
             Statement stm = c.createStatement();
             String sql = "SELECT * FROM solicitudes";
             ResultSet r = stm.executeQuery(sql);
@@ -73,11 +105,10 @@ public class serviciosGenController {
     }
     @FXML
     private void Buscar(KeyEvent event) {
-
         try{
-            Connection c = EnlaceNB.getConexion();
+            Connection c = EnlaceIvan.getConexion();
             Statement stm = c.createStatement();
-            String sql = "SELECT * FROM Libro WHERE TITULO LIKE '"+txtBuscar.getText()+"%'";
+            String sql = "SELECT * FROM solicitudes WHERE nombresolicitante LIKE '"+txtBuscar.getText()+"%'";
             ResultSet r = stm.executeQuery(sql);
             servciosGen.clear();
             while (r.next()){
@@ -105,6 +136,7 @@ public class serviciosGenController {
         tblServcios.refresh();
 
     }
+
 
 
 }

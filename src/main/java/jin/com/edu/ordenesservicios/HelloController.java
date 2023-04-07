@@ -2,20 +2,27 @@ package jin.com.edu.ordenesservicios;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import jin.com.edu.ordenesservicios.EnlaceJazmin;
 import jin.com.edu.ordenesservicios.EnlaceNB;
 import jin.com.edu.ordenesservicios.HelloApplication;
-
+import javafx.animation.FadeTransition;
+import javafx.util.Duration;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class HelloController {
     //INICIO DE SESIÓN
+
+    @FXML private AnchorPane ap;
     @FXML
     private TextField txtCorreo;
     @FXML
@@ -28,6 +35,7 @@ public class HelloController {
     private Label labAlerta;
     @FXML
     private Button btnInciciar;
+    FadeTransition fade = new FadeTransition(Duration.seconds(1));
 
     public void login() {
         Connection connection = null;
@@ -46,14 +54,24 @@ public class HelloController {
             labAlerta.setVisible(false);
         } else {
             try {
-                connection = EnlaceJazmin.getConexion();
-                pst = connection.prepareStatement("select correo, contraseña from usuarios where correo='" + correo
-                        + "' and contraseña ='" + contrasena + "'");
+                connection = EnlaceIvan.getConexion();
+                pst = connection.prepareStatement("select correo, contrasena from usuarios where correo='" + correo
+                        + "' and contrasena ='" + contrasena + "'");
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
                     System.out.println("Abrir ventana");
-                    HelloApplication.setVista("ventanaServiciosGen");
+                   // HelloApplication.setVista("ventanaServiciosGen");
+
+
+                    FadeTransition fade = new FadeTransition(Duration.seconds(1));
+                    fade.setNode(ap);
+                    fade.setFromValue(1.0);
+                    fade.setToValue(0.0);
+                    fade.play();
+                    fade.setOnFinished(event -> {
+                        HelloApplication.setVista("ventanaServiciosGen");
+                    });
                 } else {
                     System.out.println("contraseña o correo incorrecto");
                     labAlerta.setVisible(true);

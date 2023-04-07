@@ -4,6 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.effect.InnerShadow;
 import jin.com.edu.ordenesservicios.EnlaceIvan;
 import jin.com.edu.ordenesservicios.clases.Personal;
 import jin.com.edu.ordenesservicios.clases.Tarea;
@@ -23,6 +26,7 @@ public class modificarController {
     @FXML DatePicker dpFinalizacion;
     @FXML TextArea txaDescripcion;
     @FXML TextArea txaObservaciones;
+    @FXML Button btnRegresar;
 
     //Varibles de Programación
     private ObservableList<Personal> personalLista;
@@ -56,7 +60,7 @@ public class modificarController {
         try{
             Connection c = EnlaceIvan.getConexion();
             Statement stm = c.createStatement();
-            String sql = "UPDATE tareaservico SET status = '"+cbestatus.getSelectionModel().getSelectedItem().toString().charAt(0)+"',fecha = '"+dpFinalizacion.getValue()+"',observacion = '"+txaObservaciones.getText()+"',tiempoestimado = '"+txtTE.getText()+"',solicitud = '"+labNoServicio.getText()+"', personal = '"+cbOperadores.getSelectionModel().getSelectedItem().toString2()+"' WHERE id = '"+labNoServicio.getText()+"';";
+            String sql = "UPDATE tareaservico SET status = '"+cbestatus.getSelectionModel().getSelectedItem().toString().charAt(0)+"',fecha = '"+dpFinalizacion.getValue()+"',observacion = '"+txaObservaciones.getText()+"',tiempoestimado = '"+txtTE.getText()+"',solicitud = '"+labNoServicio.getText()+"', personal = '"+cbOperadores.getSelectionModel().getSelectedItem().toString2()+"' WHERE id = '"+id+"';";
             System.out.println(stm.executeUpdate(sql));
             stm.close();
         }catch (Exception e){
@@ -77,6 +81,17 @@ public class modificarController {
         cbOperadores.setItems(personalLista);
         cbestatus.setItems(estado);
 
+        DropShadow sombra = new DropShadow();
+        btnRegresar.setOnMouseEntered(e -> btnRegresar.setEffect(sombra));
+
+
+        btnRegresar.setOnMouseExited(e -> btnRegresar.setEffect(null));
+        txaObservaciones.setWrapText(true);
+        txaDescripcion.setWrapText(true);
+    }
+
+    public void regresar(){
+        HelloApplication.setVista("ventanaServiciosGen");
     }
 
 }
