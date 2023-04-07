@@ -12,7 +12,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import jin.com.edu.ordenesservicios.EnlaceNB;
 import jin.com.edu.ordenesservicios.clases.ServiciosGen;
 import jin.com.edu.ordenesservicios.clases.Tarea;
 
@@ -34,6 +33,7 @@ public class serviciosGenController {
     private ImageView ivUsuarios;
     @FXML
     private TableView tblServcios;
+
     private ObservableList<ServiciosGen> servciosGen = FXCollections.observableArrayList();
 
 
@@ -54,11 +54,14 @@ public class serviciosGenController {
                     stage.setScene(escena);//agregar la escena de la ventana
                     stage.initModality(Modality.APPLICATION_MODAL);
                     modificarController mc =  loader.getController();
-
-                    System.out.println();
+                    ServiciosGen sg = (ServiciosGen) tblServcios.getSelectionModel().getSelectedItem();
+                    int id1 = sg.getId();
+                    mc.setId(sg.getId());
+                    mc.setId(id1);
+                    mc.labNoServicio.setText(String.valueOf(sg.getId()));
+                    stage.show();
                     actualizarServcios();
                     //ch200111036@chapala.tecmm.edu.mx
-
                     //stage.show();
                 }catch (Exception e){
                     e.printStackTrace();
@@ -71,7 +74,6 @@ public class serviciosGenController {
 
 
     private void actualizarServcios() {
-
         try{
             Connection c = EnlaceIvan.getConexion();
             Statement stm = c.createStatement();
@@ -93,7 +95,6 @@ public class serviciosGenController {
                 clmFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
                 clmNombreS.setCellValueFactory(new PropertyValueFactory<>("nombresolicitante"));
                 clmUbicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
-
             }
             stm.close();
 
@@ -101,7 +102,6 @@ public class serviciosGenController {
             e.printStackTrace();
         }
         tblServcios.refresh();
-
     }
     @FXML
     private void Buscar(KeyEvent event) {

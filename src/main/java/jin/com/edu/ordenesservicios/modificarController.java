@@ -5,9 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.effect.InnerShadow;
-import jin.com.edu.ordenesservicios.EnlaceIvan;
 import jin.com.edu.ordenesservicios.clases.Personal;
 import jin.com.edu.ordenesservicios.clases.Tarea;
 
@@ -31,10 +28,11 @@ public class modificarController {
     //Varibles de Programación
     private ObservableList<Personal> personalLista;
     private ObservableList<Tarea> estado;
-    private int id;
+
     public void setId(int id) {
         this.id = id;
     }
+    private int id;
     @FXML
     public void datosCombo(){
         try {
@@ -51,25 +49,19 @@ public class modificarController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     @FXML
     public void modifcarOrden(){
-        //System.out.println(cbestatus.getSelectionModel().getSelectedItem().toString().charAt(0));
-
         try{
             Connection c = EnlaceIvan.getConexion();
             Statement stm = c.createStatement();
-            String sql = "UPDATE tareaservico SET status = '"+cbestatus.getSelectionModel().getSelectedItem().toString().charAt(0)+"',fecha = '"+dpFinalizacion.getValue()+"',observacion = '"+txaObservaciones.getText()+"',tiempoestimado = '"+txtTE.getText()+"',solicitud = '"+labNoServicio.getText()+"', personal = '"+cbOperadores.getSelectionModel().getSelectedItem().toString2()+"' WHERE id = '"+id+"';";
+            String sql = "UPDATE tareaservico SET status = '"+cbestatus.getSelectionModel().getSelectedItem().toString().charAt(0)+"',fecha = '"+dpFinalizacion.getValue()+"',observacion = '"+txaObservaciones.getText()+"',tiempoestimado = '"+txtTE.getText()+"',solicitud = '"+labNoServicio.getText()+"', personal = '"+cbOperadores.getSelectionModel().getSelectedItem().toString2()+"' WHERE id = '"+labNoServicio.getText()+"';";
             System.out.println(stm.executeUpdate(sql));
             stm.close();
         }catch (Exception e){
             System.out.println(e);
             System.out.println("NO FUNCIONA LA CONSULTA");
-
-
         }
-
     }
     public void initialize() {
         personalLista = FXCollections.observableArrayList();
@@ -80,11 +72,9 @@ public class modificarController {
         datosCombo();
         cbOperadores.setItems(personalLista);
         cbestatus.setItems(estado);
-
+        System.out.println(id);
         DropShadow sombra = new DropShadow();
         btnRegresar.setOnMouseEntered(e -> btnRegresar.setEffect(sombra));
-
-
         btnRegresar.setOnMouseExited(e -> btnRegresar.setEffect(null));
         txaObservaciones.setWrapText(true);
         txaDescripcion.setWrapText(true);
