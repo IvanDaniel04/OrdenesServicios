@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="610.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jin.com.edu.ordenesservicios.serviciosGenController">
@@ -38,11 +39,25 @@
         </columns>
       </TableView>
       <TextField fx:id="txtBuscar" layoutX="222.0" layoutY="144.0" onKeyTyped="#Buscar" prefHeight="30.0" prefWidth="590.0" />
-      <ImageView fitHeight="46.0" fitWidth="52.0" layoutX="1014.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="46.0" fitWidth="52.0" layoutX="1014.0" layoutY="79.0" onMousePressed="#pane" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../user.png" />
          </image>
       </ImageView>
+      <Pane fx:id="paneSerGen" layoutX="850.0" layoutY="130.0" prefHeight="143.0" prefWidth="200.0" style="-fx-background-color: #E0FFFF#E0FFFF;" visible="false">
+         <children>
+            <Button layoutX="13.0" layoutY="38.0" mnemonicParsing="false" onAction="#Visualizarusuarios" prefHeight="22.0" prefWidth="178.0" style="-fx-background-color: #ADD8E6#ADD8E6; -fx-background-radius: 10; -fx-border-color: #00008B #00008B; -fx-border-radius: 10;" text="REGISTRAR USUARIO">
+               <font>
+                  <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="13.0" layoutY="88.0" mnemonicParsing="false" onAction="#cerrarSesión" prefHeight="22.0" prefWidth="178.0" style="-fx-background-color: #ADD8E6#ADD8E6; -fx-background-radius: 10; -fx-border-color: #00008B #00008B; -fx-border-radius: 10;" text="CERRAR SESIÓN">
+               <font>
+                  <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
       
    </children>
 </AnchorPane>

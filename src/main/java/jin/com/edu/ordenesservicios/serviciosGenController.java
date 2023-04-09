@@ -10,6 +10,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jin.com.edu.ordenesservicios.clases.ServiciosGen;
@@ -32,6 +34,8 @@ public class serviciosGenController {
     @FXML
     private ImageView ivUsuarios;
     @FXML
+    private Pane paneSerGen;
+    @FXML
     private TableView tblServcios;
 
     private ObservableList<ServiciosGen> servciosGen = FXCollections.observableArrayList();
@@ -53,28 +57,38 @@ public class serviciosGenController {
                     Scene escena = new Scene(loader.load());
                     stage.setScene(escena);//agregar la escena de la ventana
                     stage.initModality(Modality.APPLICATION_MODAL);
-                    modificarController mc =  loader.getController();
+                    modificarController mc = loader.getController();
                     ServiciosGen sg = (ServiciosGen) tblServcios.getSelectionModel().getSelectedItem();
-                    int id1 = sg.getId();
-                    mc.setId(sg.getId());
-                    mc.setId(id1);
-                    mc.labNoServicio.setText(String.valueOf(sg.getId()));
+                    mc.setID(sg.getId());
+                    System.out.println("ID POTENTE" + sg.getId());
+                    try{
+                        Connection c = EnlaceIvan.getConexion();
+                        Statement stm = c.createStatement();
+                        String sql = "SELECT descripcion FROM solicitudes WHERE id = '"+sg.getId()+"';";
+                        ResultSet r = stm.executeQuery(sql);
+                        while (r.next()){
+                            mc.txaDescripcion.setText(r.getString("descripcion"));
+                        }
+                        stm.close();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     stage.show();
-                    actualizarServcios();
+
                     //ch200111036@chapala.tecmm.edu.mx
-                    //stage.show();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
 
 
             }
+            tblServcios.refresh();
         }
     }
 
 
     private void actualizarServcios() {
-        try{
+       try{
             Connection c = EnlaceIvan.getConexion();
             Statement stm = c.createStatement();
             String sql = "SELECT * FROM solicitudes";
@@ -134,6 +148,27 @@ public class serviciosGenController {
             e.printStackTrace();
         }
         tblServcios.refresh();
+
+    }
+
+    @FXML
+    public void pane () {
+        if (paneSerGen.isVisible()) {//detectar doble click
+            paneSerGen.setVisible(false);
+        }else {
+            paneSerGen.setVisible(true);
+        }
+    }
+
+
+    @FXML
+    public void cerrarSesión(){
+        HelloApplication.setVista("hello-view");
+
+    }
+    @FXML
+    public void Visualizarusuarios(){
+        HelloApplication.setVista("ventanaVisualizarUsuarios");
 
     }
 

@@ -4,8 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
+import javafx.stage.Stage;
 import jin.com.edu.ordenesservicios.clases.Personal;
+import jin.com.edu.ordenesservicios.clases.ServiciosGen;
 import jin.com.edu.ordenesservicios.clases.Tarea;
 
 import java.sql.Connection;
@@ -29,10 +32,18 @@ public class modificarController {
     private ObservableList<Personal> personalLista;
     private ObservableList<Tarea> estado;
 
-    public void setId(int id) {
+
+
+    public void setID(int id) {
         this.id = id;
+        labNoServicio.setText(String.valueOf(id));
     }
     private int id;
+
+    public int getId() {
+        return id;
+    }
+
     @FXML
     public void datosCombo(){
         try {
@@ -50,6 +61,25 @@ public class modificarController {
             e.printStackTrace();
         }
     }
+
+    public void imprimirId(){
+        System.out.println(id);
+        try{
+            Connection c = EnlaceIvan.getConexion();
+            Statement stm = c.createStatement();
+            String sql = "SELECT descripcion FROM solicitudes WHERE id = '"+id+"';";
+            ResultSet r = stm.executeQuery(sql);
+            while (r.next()){
+                txaDescripcion.setText(r.getString("descripcion"));
+            }
+            stm.close();
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void modifcarOrden(){
         try{
@@ -72,16 +102,22 @@ public class modificarController {
         datosCombo();
         cbOperadores.setItems(personalLista);
         cbestatus.setItems(estado);
-        System.out.println(id);
         DropShadow sombra = new DropShadow();
         btnRegresar.setOnMouseEntered(e -> btnRegresar.setEffect(sombra));
         btnRegresar.setOnMouseExited(e -> btnRegresar.setEffect(null));
         txaObservaciones.setWrapText(true);
         txaDescripcion.setWrapText(true);
+        System.out.println(getId()+"NOSERVICIO");
+
+
+
+
     }
 
     public void regresar(){
-        HelloApplication.setVista("ventanaServiciosGen");
+        Stage stage = (Stage) btnRegresar.getScene().getWindow();
+        stage.close();
+
     }
 
 }
