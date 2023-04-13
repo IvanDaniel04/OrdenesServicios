@@ -87,6 +87,7 @@ public class modificarController {
             Statement stm = c.createStatement();
             String sql = "UPDATE tareaservico SET status = '"+cbestatus.getSelectionModel().getSelectedItem().toString().charAt(0)+"',fecha = '"+dpFinalizacion.getValue()+"',observacion = '"+txaObservaciones.getText()+"',tiempoestimado = '"+txtTE.getText()+"',solicitud = '"+labNoServicio.getText()+"', personal = '"+cbOperadores.getSelectionModel().getSelectedItem().toString2()+"' WHERE id = '"+labNoServicio.getText()+"';";
             System.out.println(stm.executeUpdate(sql));
+            System.out.println(labNoServicio.getText());
             stm.close();
         }catch (Exception e){
             System.out.println(e);
