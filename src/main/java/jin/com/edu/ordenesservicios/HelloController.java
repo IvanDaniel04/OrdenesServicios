@@ -1,6 +1,9 @@
 package jin.com.edu.ordenesservicios;
 
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,7 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import jin.com.edu.ordenesservicios.EnlaceJazmin;
 import jin.com.edu.ordenesservicios.EnlaceNB;
@@ -33,9 +38,14 @@ public class HelloController {
     private Label labAlertaContrasena;
     @FXML
     private Label labAlerta;
-    @FXML
-    private Button btnInciciar;
+    @FXML private TextField txtcontraseña;
+
+    @FXML private ImageView mostraContraseña;
+    @FXML private ImageView ocultarContraseña;
+
+    @FXML private Rectangle rectangle ;
     FadeTransition fade = new FadeTransition(Duration.seconds(1));
+
 
     public void login() {
         Connection connection = null;
@@ -48,21 +58,22 @@ public class HelloController {
             labAlertaCorreo.setVisible(true);
             labAlertaContrasena.setVisible(false);
             labAlerta.setVisible(false);
+            rectangle.setVisible(false);
         } else if (contrasena.equals("")) {
             labAlertaContrasena.setVisible(true);
             labAlertaCorreo.setVisible(false);
             labAlerta.setVisible(false);
+            rectangle.setVisible(false);
         } else {
             try {
                 connection = EnlaceIvan.getConexion();
                 pst = connection.prepareStatement("select correo, contrasena from usuarios where correo='" + correo
-                        + "' and contrasena ='" + contrasena + "'");
+                        + "' and contraseña ='" + contrasena + "'");
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
                     System.out.println("Abrir ventana");
                    // HelloApplication.setVista("ventanaServiciosGen");
-
 
                     FadeTransition fade = new FadeTransition(Duration.seconds(1));
                     fade.setNode(ap);
@@ -75,13 +86,33 @@ public class HelloController {
                 } else {
                     System.out.println("contraseña o correo incorrecto");
                     labAlerta.setVisible(true);
+                    rectangle.setVisible(true);
                     labAlertaContrasena.setVisible(false);
                     labAlertaCorreo.setVisible(false);
                 }
+                
+
             } catch (Exception e) {
-                System.out.println("nada");
+             e.printStackTrace();
 
             }
         }
+    }
+    public void contraseña (){
+        if (ocultarContraseña.isVisible()){
+            ocultarContraseña.setVisible(false);
+            mostraContraseña.setVisible(true);
+            txtcontraseña.setVisible(true);
+            psFContrasena.setVisible(false);
+            txtcontraseña.setText(psFContrasena.getText());
+        }else if (mostraContraseña.isVisible()){
+            mostraContraseña.setVisible(false);
+            ocultarContraseña.setVisible(true);
+            txtcontraseña.setVisible(false);
+            psFContrasena.setVisible(true);
+            psFContrasena.setText(txtcontraseña.getText());
+
+        }
+
     }
 }

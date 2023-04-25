@@ -93,6 +93,7 @@ public class modificarController {
             System.out.println(e);
             System.out.println("NO FUNCIONA LA CONSULTA");
         }
+       regresar();
     }
     public void initialize() {
         personalLista = FXCollections.observableArrayList();
@@ -116,8 +117,9 @@ public class modificarController {
     }
 
     public void regresar(){
+        //HelloApplication.setVista("ventanaServiciosGen");
         Stage stage = (Stage) btnRegresar.getScene().getWindow();
-        stage.close();
+       stage.close();
 
     }
 

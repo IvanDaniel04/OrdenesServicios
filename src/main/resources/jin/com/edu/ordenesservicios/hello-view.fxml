@@ -7,44 +7,61 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jin.com.edu.ordenesservicios.HelloController">
+<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jin.com.edu.ordenesservicios.HelloController">
    <children>
       <ImageView fitHeight="610.0" fitWidth="1080.0" layoutX="88.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../../../login.png" />
+            <Image url="@../../../../iniciosesion.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtCorreo" alignment="CENTER" layoutX="608.0" layoutY="212.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="56.0" prefWidth="354.0" promptText="         Usuario         " style="-fx-border-radius: 35; -fx-border-color: #00008B#00008B; -fx-background-radius: 35; -fx-opacity: 0.5;">
+      <TextField fx:id="txtCorreo" alignment="CENTER" layoutX="600.0" layoutY="223.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="49.0" prefWidth="372.0" promptText="         Usuario         " style="-fx-border-color: #00008B#00008B; -fx-opacity: 0.5;">
          <font>
-            <Font name="Avenir Book" size="14.0" />
+            <Font name="Trebuchet MS" size="14.0" />
          </font>
       </TextField>
-      <Button fx:id="btnInciciar" layoutX="717.0" layoutY="402.0" mnemonicParsing="false" onAction="#login" prefHeight="42.0" prefWidth="135.0" style="-fx-background-color: #ADD8E6#ADD8E6; -fx-background-radius: 10; -fx-border-color: #00008B #00008B; -fx-border-radius: 10;" text="INICIAR">
+      <Button fx:id="btnInciciar" layoutX="715.0" layoutY="416.0" mnemonicParsing="false" onAction="#login" prefHeight="42.0" prefWidth="135.0" style="-fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6; -fx-background-color: #D3D3D3#D3D3D3;" text="INICIAR">
          <font>
             <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
          </font>
       </Button>
-      <PasswordField fx:id="psFContrasena" alignment="CENTER" layoutX="607.0" layoutY="312.0" prefHeight="52.0" prefWidth="350.0" promptText="   Contraseña" style="-fx-border-radius: 35; -fx-border-color: #00008B#00008B #00008B#00008B; -fx-background-radius: 35; -fx-opacity: 0.5;">
+      <PasswordField fx:id="psFContrasena" alignment="CENTER" layoutX="602.0" layoutY="322.0" prefHeight="47.0" prefWidth="372.0" promptText="   Contraseña" style="-fx-border-color: #00008B#00008B #00008B#00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="241.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="322.0">
          <font>
-            <Font name="Avenir Book" size="14.0" />
+            <Font name="Verdana" size="14.0" />
          </font>
       </PasswordField>
-      <Label fx:id="labAlertaCorreo" layoutX="717.0" layoutY="270.0" prefHeight="20.0" prefWidth="152.0" text="Ingresa tu correo" textFill="#fc0000" visible="false">
+      <Label fx:id="labAlertaCorreo" alignment="CENTER" layoutX="717.0" layoutY="270.0" prefHeight="20.0" prefWidth="152.0" text="Ingresa tu correo" textFill="#fc0000" visible="false">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="labAlertaContrasena" layoutX="722.0" layoutY="365.0" prefHeight="20.0" prefWidth="152.0" text="Ingresa tu contraseña" textFill="#fc0000" visible="false">
+      <Label fx:id="labAlertaContrasena" alignment="CENTER" layoutX="698.0" layoutY="373.0" prefHeight="18.0" prefWidth="180.0" text="Ingresa tu contraseña" textFill="#fc0000" visible="false">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="labAlerta" layoutX="668.0" layoutY="177.0" prefHeight="16.0" prefWidth="246.0" text="Usuario o contraseña incorrecta" textFill="#fc0000" visible="false">
+      <Label fx:id="labAlerta" alignment="CENTER" layoutX="648.0" layoutY="171.0" prefHeight="42.0" prefWidth="281.0" style="-fx-border-color: #FF0000#FF0000;" text="Usuario o contraseña incorrecta" visible="false">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Label>
+      <ImageView fx:id="ocultarContraseña" fitHeight="22.0" fitWidth="63.0" layoutX="982.0" layoutY="335.0" onMousePressed="#contraseña" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../ojo2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mostraContraseña" fitHeight="22.0" fitWidth="63.0" layoutX="982.0" layoutY="335.0" onMousePressed="#contraseña" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../ojo1.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtcontraseña" alignment="CENTER" layoutX="602.0" layoutY="322.0" opacity="0.65" prefHeight="47.0" prefWidth="372.0" style="-fx-border-color: #00008B#00008B #00008B#00008B; -fx-opacity: 0.5;" visible="false" AnchorPane.bottomAnchor="241.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="322.0">
+         <font>
+            <Font name="Trebuchet MS" size="14.0" />
+         </font>
+      </TextField>
+      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#f80000" height="42.0" layoutX="648.0" layoutY="171.0" opacity="0.33" stroke="#f50101" strokeType="INSIDE" visible="false" width="281.0" />
    </children>
 </AnchorPane>

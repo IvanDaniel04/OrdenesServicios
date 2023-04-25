@@ -1,31 +1,32 @@
 package jin.com.edu.ordenesservicios;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import jin.com.edu.ordenesservicios.EnlaceIvan;
 import jin.com.edu.ordenesservicios.clases.user;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
-public class visualizarUsuariosController{
-    @FXML TableView<user> tbvUsuarios;
-    @FXML TableColumn<user, String> tbcCorreo;
+public class VisualizarUsuarioController {
+    @FXML
+    TableView<user> tbvUsuarios;
+    @FXML
+    TableColumn<user, String> tbcCorreo;
     @FXML TableColumn<user, String> tbcContrasena;
     @FXML TableColumn<user, String> tbcTipo;
-    @FXML Button btnRegresar;
+    @FXML
+    Button btnRegresar;
 
-    @FXML Pane paneVU;
+    @FXML
+    Pane paneVU;
 
 
     ObservableList<user> usuariosTabla;
@@ -45,7 +46,7 @@ public class visualizarUsuariosController{
                     tipoO = "Operador";
                 }
                 tbvUsuarios.setItems(usuariosTabla);
-                usuariosTabla.add(new user(r.getString("correo"), r.getString("contrasena"), tipoO));
+                usuariosTabla.add(new user(r.getString("correo"), r.getString("contraseña"), tipoO));
                 tbcCorreo.setCellValueFactory(new PropertyValueFactory<>("correo1"));
                 tbcContrasena.setCellValueFactory(new PropertyValueFactory<>("contrasena1"));
                 tbcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
@@ -58,7 +59,7 @@ public class visualizarUsuariosController{
     }
 
     public void Regresar(){
-    HelloApplication.setVista("ventanaServiciosGen");
+        HelloApplication.setVista("ventanaServiciosGen");
     }
 
     public void cerrarSesion(){
@@ -72,15 +73,16 @@ public class visualizarUsuariosController{
             paneVU.setVisible(true);
         }
     }
+    public void registrarU(){
+        HelloApplication.setVista("ventanaNuevoUs");
+    }
 
     public void initialize (){
         usuariosTabla = FXCollections.observableArrayList();
-       Actualizar();
+        Actualizar();
         DropShadow sombra = new DropShadow();
         btnRegresar.setOnMouseEntered(e -> btnRegresar.setEffect(sombra));
         btnRegresar.setOnMouseExited(e -> btnRegresar.setEffect(null));
 
     }
-
-
 }
