@@ -24,6 +24,10 @@ public class Tarea{
         this.fechaRegistro = fechaRegistro;
     }
 
+    public char getEstado() {
+        return estado.charAt(0);
+    }
+
     public int getId() {
         return id;
     }

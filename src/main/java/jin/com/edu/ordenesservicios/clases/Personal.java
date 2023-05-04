@@ -15,6 +15,10 @@ public class Personal{
         this.sexo = sexo;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
     @Override
     public String toString() {
         return this.nombre;

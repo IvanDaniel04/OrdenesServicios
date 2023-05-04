@@ -44,7 +44,7 @@ public class HelloController {
     @FXML private ImageView ocultarContraseña;
 
     @FXML private Rectangle rectangle ;
-    FadeTransition fade = new FadeTransition(Duration.seconds(1));
+    //FadeTransition fade = new FadeTransition(Duration.seconds(1));
 
 
     public void login() {
@@ -68,21 +68,13 @@ public class HelloController {
             try {
                 connection = EnlaceIvan.getConexion();
                 pst = connection.prepareStatement("select correo, contrasena from usuarios where correo='" + correo
-                        + "' and contraseña ='" + contrasena + "'");
+                        + "' and contrasena ='" + contrasena + "'");
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
                     System.out.println("Abrir ventana");
-                   // HelloApplication.setVista("ventanaServiciosGen");
+                   HelloApplication.setVista("ventanaServiciosGen");
 
-                    FadeTransition fade = new FadeTransition(Duration.seconds(1));
-                    fade.setNode(ap);
-                    fade.setFromValue(1.0);
-                    fade.setToValue(0.0);
-                    fade.play();
-                    fade.setOnFinished(event -> {
-                        HelloApplication.setVista("ventanaServiciosGen");
-                    });
                 } else {
                     System.out.println("contraseña o correo incorrecto");
                     labAlerta.setVisible(true);

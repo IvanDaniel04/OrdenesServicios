@@ -93,19 +93,24 @@ public class usuario implements Initializable {
                 if(psfContraseña.getText().equals(txtContraseñaConf.getText())||psfContraseña.getText().equals(psfContraseñaConf.getText())){
                     Connection c = EnlaceIvan.getConexion();
                     Statement stm = c.createStatement();
-                    String sql = "INSERT INTO usuarios VALUES (0,'" + cadena + "','" + cadena2 + "','" +
-                            tipo.getSelectionModel().getSelectedItem().toString().charAt(0) + "')";
-                    stm.execute(sql);
                     String sql2 = "INSERT INTO personal VALUES (0,'" + txtAreaConocimiento.getText() + "','" + txtEdad.getText() + "'," +
                             "'" + nombre + "','" + sexo.getSelectionModel().getSelectedItem().toString().charAt(0) + "')";
                     stm.execute(sql2);
+
+                    String sql3 = "SELECT LAST_INSERT_ID()";
+                    ResultSet rs = stm.executeQuery(sql3);
+                    if (rs.next()) {
+                        int idPersonal = rs.getInt(1);
+                        String sql4 = "INSERT INTO usuarios VALUES (0,'" + cadena + "','" + cadena2 + "','" +
+                                tipo.getSelectionModel().getSelectedItem().toString().charAt(0) + "'," + idPersonal + ")";
+                        stm.execute(sql4);
+                    }
+
                     HelloApplication.setVista("ventanaVisualizarUsuarios");
                     stm.close();
                 }else {
                     System.out.println("La contraseña no coincide");
                     labAlconfin.setVisible(true);
-
-
                 }
 
             }catch (Exception e){

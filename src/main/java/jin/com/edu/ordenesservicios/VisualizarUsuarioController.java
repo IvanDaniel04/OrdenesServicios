@@ -46,7 +46,7 @@ public class VisualizarUsuarioController {
                     tipoO = "Operador";
                 }
                 tbvUsuarios.setItems(usuariosTabla);
-                usuariosTabla.add(new user(r.getString("correo"), r.getString("contraseña"), tipoO));
+                usuariosTabla.add(new user(r.getString("correo"), r.getString("contrasena"), tipoO));
                 tbcCorreo.setCellValueFactory(new PropertyValueFactory<>("correo1"));
                 tbcContrasena.setCellValueFactory(new PropertyValueFactory<>("contrasena1"));
                 tbcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));

@@ -61,6 +61,25 @@ public class modificarController {
             e.printStackTrace();
         }
     }
+    public void seleccionarPersonalEnComboBox(String nombrePersonal) {
+        for (Personal p : personalLista) {
+            if (p.getNombre().equals(nombrePersonal)) {
+                System.out.println(p.getNombre());
+                cbOperadores.setValue(p);
+                break;
+            }
+        }
+    }
+
+    public void seleccionarEstado(char letra) {
+        for (Tarea t : estado) {
+            if (t.toString().charAt(0) == letra) {
+               cbestatus.setValue(t);
+            }
+        }
+    }
+
+
 
     public void imprimirId(){
         System.out.println(id);
@@ -117,7 +136,6 @@ public class modificarController {
     }
 
     public void regresar(){
-        //HelloApplication.setVista("ventanaServiciosGen");
         Stage stage = (Stage) btnRegresar.getScene().getWindow();
        stage.close();
 
