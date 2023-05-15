@@ -22,9 +22,12 @@ import jin.com.edu.ordenesservicios.EnlaceNB;
 import jin.com.edu.ordenesservicios.HelloApplication;
 import javafx.animation.FadeTransition;
 import javafx.util.Duration;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 
 public class HelloController {
     //INICIO DE SESIÓN
@@ -150,12 +153,9 @@ public class HelloController {
         try{
             paneAcercade.setVisible(false);
             String direccion = System.getProperty("user.dir") + "/src/main/resources/Manual de usuario.pdf";
-            ProcessBuilder archivo;
-            //WINDOWS
-           archivo= new ProcessBuilder("cmd.exe", "/c", "start", direccion);
-            //MAC
-           // archivo = new ProcessBuilder("open", direccion);
-            archivo.start().waitFor();
+           String comando = "cmd.exe /c start \"\" \"" +direccion+ "\" ";
+           Runtime.getRuntime().exec(comando);
+
 
 
 
@@ -163,4 +163,5 @@ public class HelloController {
 
         }
     }
-}
+
+    }
