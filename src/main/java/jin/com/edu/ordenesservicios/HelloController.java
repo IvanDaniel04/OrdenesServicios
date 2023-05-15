@@ -152,9 +152,9 @@ public class HelloController {
             String direccion = System.getProperty("user.dir") + "/src/main/resources/Manual de usuario.pdf";
             ProcessBuilder archivo;
             //WINDOWS
-           // archivo= new ProcessBuilder("cmd.exe", "/c", "start", direccion);
+           archivo= new ProcessBuilder("cmd.exe", "/c", "start", direccion);
             //MAC
-            archivo = new ProcessBuilder("open", direccion);
+           // archivo = new ProcessBuilder("open", direccion);
             archivo.start().waitFor();
 
 
