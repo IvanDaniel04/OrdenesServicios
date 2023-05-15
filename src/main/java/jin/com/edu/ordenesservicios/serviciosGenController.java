@@ -70,7 +70,7 @@ public class serviciosGenController {
                         int id = sg.getId();
                         System.out.println("ID POTENTE" + sg.getId());
                         try {
-                            Connection c = EnlaceIvan.getConexion();
+                            Connection c = EnlaceJazmin.getConexion();
                             Statement stm = c.createStatement();
                             Statement stm2 = c.createStatement();
                             Statement stm3 = c.createStatement();
@@ -140,7 +140,7 @@ public class serviciosGenController {
 
     private void actualizarServcios() {
        try{
-            Connection c = EnlaceIvan.getConexion();
+            Connection c = EnlaceJazmin.getConexion();
             Statement stm = c.createStatement();
             String sql = "SELECT * FROM solicitudes";
             ResultSet r = stm.executeQuery(sql);
@@ -175,7 +175,7 @@ public class serviciosGenController {
     private void Buscar(KeyEvent event) throws InterruptedException {
         buscando = true;
         try{
-            Connection c = EnlaceIvan.getConexion();
+            Connection c = EnlaceJazmin.getConexion();
             Statement stm = c.createStatement();
             String sql = "SELECT * FROM solicitudes WHERE nombresolicitante LIKE '"+txtBuscar.getText()+"%'";
             ResultSet r = stm.executeQuery(sql);
@@ -243,7 +243,7 @@ public class serviciosGenController {
                         continue; // Si es así, espera y vuelve a verificar la variable
                     }
                     try {
-                        Connection c = EnlaceIvan.getConexion();
+                        Connection c = EnlaceJazmin.getConexion();
                         Statement stm = c.createStatement();
                         String sql = "SELECT * FROM solicitudes";
                         ResultSet r = stm.executeQuery(sql);

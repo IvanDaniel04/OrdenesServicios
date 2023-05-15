@@ -47,7 +47,7 @@ public class modificarController {
     @FXML
     public void datosCombo(){
         try {
-            Connection c = EnlaceIvan.getConexion();
+            Connection c = EnlaceJazmin.getConexion();
             Statement stm = c.createStatement();
             String sql = "SELECT * FROM personal";
             ResultSet r = stm.executeQuery(sql);
@@ -120,6 +120,7 @@ public class modificarController {
         estado.add(new Tarea("En Espera"));
         estado.add(new Tarea("Atendido"));
         estado.add(new Tarea("No Atendido"));
+        estado.add(new Tarea("Terminado"));
         datosCombo();
         cbOperadores.setItems(personalLista);
         cbestatus.setItems(estado);

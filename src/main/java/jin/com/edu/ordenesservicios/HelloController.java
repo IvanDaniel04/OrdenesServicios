@@ -13,7 +13,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jin.com.edu.ordenesservicios.EnlaceJazmin;
 import jin.com.edu.ordenesservicios.EnlaceNB;
@@ -27,7 +29,8 @@ import java.sql.ResultSet;
 public class HelloController {
     //INICIO DE SESIÓN
 
-    @FXML private AnchorPane ap;
+    @FXML
+    private AnchorPane ap;
     @FXML
     private TextField txtCorreo;
     @FXML
@@ -38,12 +41,21 @@ public class HelloController {
     private Label labAlertaContrasena;
     @FXML
     private Label labAlerta;
-    @FXML private TextField txtcontraseña;
+    @FXML
+    private TextField txtcontraseña;
 
-    @FXML private ImageView mostraContraseña;
-    @FXML private ImageView ocultarContraseña;
+    @FXML
+    private ImageView mostraContraseña;
+    @FXML
+    private ImageView ocultarContraseña;
 
-    @FXML private Rectangle rectangle ;
+    @FXML
+    private Rectangle rectangle;
+    @FXML
+    private Pane paneAcercade;
+    @FXML
+    private Label labCreditos;
+    
     //FadeTransition fade = new FadeTransition(Duration.seconds(1));
 
 
@@ -66,14 +78,14 @@ public class HelloController {
             rectangle.setVisible(false);
         } else {
             try {
-                connection = EnlaceIvan.getConexion();
+                connection = EnlaceJazmin.getConexion();
                 pst = connection.prepareStatement("select correo, contrasena from usuarios where correo='" + correo
                         + "' and contrasena ='" + contrasena + "'");
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
                     System.out.println("Abrir ventana");
-                   HelloApplication.setVista("ventanaServiciosGen");
+                    HelloApplication.setVista("ventanaServiciosGen");
 
                 } else {
                     System.out.println("contraseña o correo incorrecto");
@@ -82,22 +94,23 @@ public class HelloController {
                     labAlertaContrasena.setVisible(false);
                     labAlertaCorreo.setVisible(false);
                 }
-                
+
 
             } catch (Exception e) {
-             e.printStackTrace();
+                e.printStackTrace();
 
             }
         }
     }
-    public void contraseña (){
-        if (ocultarContraseña.isVisible()){
+
+    public void contraseña() {
+        if (ocultarContraseña.isVisible()) {
             ocultarContraseña.setVisible(false);
             mostraContraseña.setVisible(true);
             txtcontraseña.setVisible(true);
             psFContrasena.setVisible(false);
             txtcontraseña.setText(psFContrasena.getText());
-        }else if (mostraContraseña.isVisible()){
+        } else if (mostraContraseña.isVisible()) {
             mostraContraseña.setVisible(false);
             ocultarContraseña.setVisible(true);
             txtcontraseña.setVisible(false);
@@ -106,5 +119,48 @@ public class HelloController {
 
         }
 
+    }
+
+    public void ayuda() {
+        if (paneAcercade.isVisible()) {
+            paneAcercade.setVisible(false);
+        } else {
+            paneAcercade.setVisible(true);
+        }
+
+    }
+
+    public void Mostrarcreditos() {
+        try {
+            paneAcercade.setVisible(false);
+            Stage stage1 = new Stage();//Crear una nueva ventana
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("ventanaCreditos.fxml"));
+            Scene escena1 = new Scene(loader1.load());
+            stage1.setScene(escena1);//agregar la escena de la ventana
+            stage1.initModality(Modality.APPLICATION_MODAL);
+            stage1.setResizable(false);
+            stage1.show();
+        } catch (Exception exception) {
+
+        }
+
+    }
+    @FXML
+    public void manual (){
+        try{
+            paneAcercade.setVisible(false);
+            String direccion = System.getProperty("user.dir") + "/src/main/resources/Manual de usuario.pdf";
+            ProcessBuilder archivo;
+            //WINDOWS
+           // archivo= new ProcessBuilder("cmd.exe", "/c", "start", direccion);
+            //MAC
+            archivo = new ProcessBuilder("open", direccion);
+            archivo.start().waitFor();
+
+
+
+        }catch (Exception e){
+
+        }
     }
 }

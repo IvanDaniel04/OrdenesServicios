@@ -14,18 +14,19 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         scene = new Scene(fxmlLoader.load());
-        stage.setTitle("LOGIN!");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.resizableProperty().setValue(Boolean.FALSE);
 
         stage.show();
+
     }
     public static void setVista (String nombre){
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource( nombre + ".fxml"));
         try {
             scene.setRoot(loader.load());
             scene.getWindow().sizeToScene();
+
         }catch (Exception e){
             e.printStackTrace();
 

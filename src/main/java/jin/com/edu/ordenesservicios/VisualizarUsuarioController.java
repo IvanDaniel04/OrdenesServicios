@@ -33,7 +33,7 @@ public class VisualizarUsuarioController {
 
     public void Actualizar(){
         try {
-            Connection c = EnlaceIvan.getConexion();
+            Connection c = EnlaceJazmin.getConexion();
             Statement stm = c.createStatement();
             String sql = "SELECT * FROM usuarios";
             ResultSet r = stm.executeQuery(sql);

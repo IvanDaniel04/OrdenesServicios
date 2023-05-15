@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import jin.com.edu.ordenesservicios.clases.Personal;
 import jin.com.edu.ordenesservicios.clases.user;
 
@@ -55,6 +58,8 @@ public class usuario implements Initializable {
 
 
     public void registar (){
+        Connection c = EnlaceJazmin.getConexion();
+        Boolean bandera = false;
         String cadena=txtCorreo.getText()+Cobcorreo.getSelectionModel().getSelectedItem().toString();
         String correo="^[\\w-]+(\\\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z0-9]{2,})$";
         String cadena2= psfContraseña.getText();
@@ -90,8 +95,27 @@ public class usuario implements Initializable {
 
         } else if (mat.matches()&&mat2.matches()){
             try {
-                if(psfContraseña.getText().equals(txtContraseñaConf.getText())||psfContraseña.getText().equals(psfContraseñaConf.getText())){
-                    Connection c = EnlaceIvan.getConexion();
+                Statement stme = c.createStatement();
+                String existe ="SELECT * FROM usuarios WHERE correo = '"+cadena+"'";
+
+                ResultSet r1 = stme.executeQuery(existe);
+
+                if (r1.next()){
+                /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("¡¡¡¡¡¡ ESTE USUARIO YA EXISTE !!!!!!");
+                alert.showAndWait();
+
+                 */
+                    Stage stage1 = new Stage();//Crear una nueva ventana
+                    FXMLLoader loader1 = new FXMLLoader(getClass().getResource("usuarioExistente.fxml"));
+                    Scene escena1 = new Scene(loader1.load());
+                    stage1.setScene(escena1);//agregar la escena de la ventana
+                    stage1.initModality(Modality.APPLICATION_MODAL);
+                    stage1.setResizable(false);
+                    stage1.show();
+                } else if(psfContraseña.getText().equals(txtContraseñaConf.getText())||psfContraseña.getText().equals(psfContraseñaConf.getText())){
+
                     Statement stm = c.createStatement();
                     String sql2 = "INSERT INTO personal VALUES (0,'" + txtAreaConocimiento.getText() + "','" + txtEdad.getText() + "'," +
                             "'" + nombre + "','" + sexo.getSelectionModel().getSelectedItem().toString().charAt(0) + "')";
@@ -106,8 +130,32 @@ public class usuario implements Initializable {
                         stm.execute(sql4);
                     }
 
-                    HelloApplication.setVista("ventanaVisualizarUsuarios");
+                    //HelloApplication.setVista("ventanaVisualizarUsuarios");
                     stm.close();
+                    bandera = true;
+
+                    if (bandera){
+                        txtContraseñaConf.setText("");
+                        txtContraseña.setText("");
+                        txtApellido.setText("");
+                        txtCorreo.setText("");
+                        txtAreaConocimiento.setText("");
+                        txtNombre.setText("");
+                        psfContraseñaConf.setText("");
+                        psfContraseña.setText("");
+                        txtEdad.setText("");
+                        tipo.getSelectionModel().select(-1);
+                        sexo.getSelectionModel().select(-1);
+                        Cobcorreo.getSelectionModel().select(-1);
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText(null);
+                        alert.setTitle("REGISTRO EXITOSO!!!!!!");
+                        alert.setContentText("¡¡¡¡¡¡ REGISTRO EXITOSO !!!!!!");
+                        alert.showAndWait();
+
+                    }
+                    r1.close();
+                    stme.close();
                 }else {
                     System.out.println("La contraseña no coincide");
                     labAlconfin.setVisible(true);
@@ -132,7 +180,7 @@ public class usuario implements Initializable {
             System.out.println("ingresa un correo valido");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setTitle("Correo no valida");
+            alert.setTitle("Correo no valido");
             alert.setContentText("El correo no cumple el formato\n FORMATO: \n example@");
             alert.showAndWait();
 

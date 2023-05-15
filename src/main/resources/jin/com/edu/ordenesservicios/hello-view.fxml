@@ -7,6 +7,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -17,7 +19,7 @@
             <Image url="@../../../../iniciosesion.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtCorreo" alignment="CENTER" layoutX="600.0" layoutY="223.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="49.0" prefWidth="372.0" promptText="         Usuario         " style="-fx-border-color: #00008B#00008B; -fx-opacity: 0.5;">
+      <TextField fx:id="txtCorreo" alignment="CENTER" layoutX="600.0" layoutY="223.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="49.0" prefWidth="372.0" promptText="Correo" style="-fx-border-color: #00008B#00008B; -fx-opacity: 0.5;">
          <font>
             <Font name="Trebuchet MS" size="14.0" />
          </font>
@@ -63,5 +65,31 @@
          </font>
       </TextField>
       <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#f80000" height="42.0" layoutX="648.0" layoutY="171.0" opacity="0.33" stroke="#f50101" strokeType="INSIDE" visible="false" width="281.0" />
+      <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="15.0" layoutY="494.0" onMousePressed="#ayuda" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../%3F.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="paneAcercade" layoutX="59.0" layoutY="437.0" prefHeight="70.0" prefWidth="188.0" visible="false">
+         <children>
+            <ImageView fitHeight="83.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../ayuda.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="32.0" layoutY="13.0" onMousePressed="#manual" text="Manual de usuario">
+               <font>
+                  <Font name="Arial Bold Italic" size="9.0" />
+               </font>
+            </Label>
+            <Label fx:id="labCreditos" layoutX="33.0" layoutY="39.0" onMousePressed="#Mostrarcreditos" text="Créditos ">
+               <font>
+                  <Font name="Arial Bold Italic" size="9.0" />
+               </font>
+            </Label>
+            <Line endX="21.316787719726562" layoutX="94.0" layoutY="24.0" startX="-65.64478302001953" />
+            <Line endX="-29.470489501953125" endY="-3.0517578125E-5" layoutX="104.0" layoutY="49.0" onMousePressed="#Mostrarcreditos" startX="-71.02735137939453" startY="-3.0517578125E-5" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
