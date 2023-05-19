@@ -1,13 +1,9 @@
 package jin.com.edu.ordenesservicios;
 
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -17,11 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import jin.com.edu.ordenesservicios.EnlaceJazmin;
-import jin.com.edu.ordenesservicios.EnlaceNB;
-import jin.com.edu.ordenesservicios.HelloApplication;
-import javafx.animation.FadeTransition;
-import javafx.util.Duration;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -55,51 +47,58 @@ public class HelloController {
     private Pane paneAcercade;
     @FXML
     private Label labCreditos;
-    
-    //FadeTransition fade = new FadeTransition(Duration.seconds(1));
+
+    sinConexionController sc = new sinConexionController();
 
 
     public void login() {
-        Connection connection = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        String correo = txtCorreo.getText().trim();
-        String contrasena = psFContrasena.getText().trim();
-        if (correo.equals("")) {
-            System.out.println("Un campo esta vacio");
-            labAlertaCorreo.setVisible(true);
-            labAlertaContrasena.setVisible(false);
-            labAlerta.setVisible(false);
-            rectangle.setVisible(false);
-        } else if (contrasena.equals("")) {
-            labAlertaContrasena.setVisible(true);
-            labAlertaCorreo.setVisible(false);
-            labAlerta.setVisible(false);
-            rectangle.setVisible(false);
-        } else {
-            try {
-                connection = EnlaceJazmin.getConexion();
-                pst = connection.prepareStatement("select correo, contrasena from usuarios where correo='" + correo
-                        + "' and contrasena ='" + contrasena + "'");
-                rs = pst.executeQuery();
 
-                if (rs.next()) {
-                    System.out.println("Abrir ventana");
-                    HelloApplication.setVista("ventanaServiciosGen");
+        if (EnlaceIvan.isConnectedToInternet()) {
+            Connection connection = null;
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+            String correo = txtCorreo.getText().trim();
+            String contrasena = psFContrasena.getText().trim();
+            if (correo.equals("")) {
+                System.out.println("Un campo esta vacio");
+                labAlertaCorreo.setVisible(true);
+                labAlertaContrasena.setVisible(false);
+                labAlerta.setVisible(false);
+                rectangle.setVisible(false);
+            } else if (contrasena.equals("")) {
+                labAlertaContrasena.setVisible(true);
+                labAlertaCorreo.setVisible(false);
+                labAlerta.setVisible(false);
+                rectangle.setVisible(false);
+            } else {
+                try {
+                    connection = EnlaceIvan.getConexion();
+                    pst = connection.prepareStatement("select correo, contrasena from usuarios where correo='" + correo
+                            + "' and contrasena ='" + contrasena + "'");
+                    rs = pst.executeQuery();
 
-                } else {
-                    System.out.println("contraseña o correo incorrecto");
-                    labAlerta.setVisible(true);
-                    rectangle.setVisible(true);
-                    labAlertaContrasena.setVisible(false);
-                    labAlertaCorreo.setVisible(false);
+                    if (rs.next()) {
+                        System.out.println("Abrir ventana");
+                        HelloApplication.setVista("ventanaServiciosGen");
+
+                    } else {
+                        System.out.println("contraseña o correo incorrecto");
+                        labAlerta.setVisible(true);
+                        rectangle.setVisible(true);
+                        labAlertaContrasena.setVisible(false);
+                        labAlertaCorreo.setVisible(false);
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
                 }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-
             }
+        } else {
+            System.out.println("Aqui va la ventana");
+            sc.sinConexion();
+
         }
     }
 
@@ -145,16 +144,17 @@ public class HelloController {
         }
 
     }
+
     @FXML
-    public void manual (){
-        try{
+    public void manual() {
+        try {
             paneAcercade.setVisible(false);
             String direccion = System.getProperty("user.dir") + "/src/main/resources/Manual de usuario.pdf";
-            String comando = "cmd.exe /c start \"\" \"" +direccion+ "\" ";
+            String comando = "cmd.exe /c start \"\" \"" + direccion + "\" ";
             Runtime.getRuntime().exec(comando);
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }

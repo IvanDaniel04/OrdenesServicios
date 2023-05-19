@@ -1,6 +1,6 @@
 package jin.com.edu.ordenesservicios.clases;
 
-public class Personal{
+public class Personal {
     private int id;
     private String area;
     private int edad;
@@ -23,7 +23,8 @@ public class Personal{
     public String toString() {
         return this.nombre;
     }
-    public int toString2(){
+
+    public int toString2() {
         return this.id;
     }
 

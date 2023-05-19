@@ -2,7 +2,7 @@ package jin.com.edu.ordenesservicios.clases;
 
 import java.util.Date;
 
-public class Tarea{
+public class Tarea {
     private int id;
     private String tiempoEstimado;
     private String descripción;
@@ -11,7 +11,7 @@ public class Tarea{
     private Date fechaRegistro;
     private String estado;
 
-    public Tarea(String estado){
+    public Tarea(String estado) {
         this.estado = estado;
     }
 

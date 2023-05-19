@@ -20,64 +20,72 @@ public class VisualizarUsuarioController {
     TableView<user> tbvUsuarios;
     @FXML
     TableColumn<user, String> tbcCorreo;
-    @FXML TableColumn<user, String> tbcContrasena;
-    @FXML TableColumn<user, String> tbcTipo;
+    @FXML
+    TableColumn<user, String> tbcContrasena;
+    @FXML
+    TableColumn<user, String> tbcTipo;
     @FXML
     Button btnRegresar;
 
     @FXML
     Pane paneVU;
-
-
+    sinConexionController sc = new sinConexionController();
     ObservableList<user> usuariosTabla;
 
-    public void Actualizar(){
-        try {
-            Connection c = EnlaceJazmin.getConexion();
-            Statement stm = c.createStatement();
-            String sql = "SELECT * FROM usuarios";
-            ResultSet r = stm.executeQuery(sql);
-            usuariosTabla.clear();
-            while (r.next()) {
-                String tipoO = "";
-                if (r.getString("tipo").charAt(0) == 'A'){
-                    tipoO = "Administrador";
-                }else {
-                    tipoO = "Operador";
+    public void Actualizar() {
+
+        if (EnlaceIvan.isConnectedToInternet()){
+            try {
+                Connection c = EnlaceIvan.getConexion();
+                Statement stm = c.createStatement();
+                String sql = "SELECT * FROM usuarios";
+                ResultSet r = stm.executeQuery(sql);
+                usuariosTabla.clear();
+                while (r.next()) {
+                    String tipoO = "";
+                    if (r.getString("tipo").charAt(0) == 'A') {
+                        tipoO = "Administrador";
+                    } else {
+                        tipoO = "Operador";
+                    }
+                    tbvUsuarios.setItems(usuariosTabla);
+                    usuariosTabla.add(new user(r.getString("correo"), r.getString("contrasena"), tipoO));
+                    tbcCorreo.setCellValueFactory(new PropertyValueFactory<>("correo1"));
+                    tbcContrasena.setCellValueFactory(new PropertyValueFactory<>("contrasena1"));
+                    tbcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
                 }
-                tbvUsuarios.setItems(usuariosTabla);
-                usuariosTabla.add(new user(r.getString("correo"), r.getString("contrasena"), tipoO));
-                tbcCorreo.setCellValueFactory(new PropertyValueFactory<>("correo1"));
-                tbcContrasena.setCellValueFactory(new PropertyValueFactory<>("contrasena1"));
-                tbcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
+                stm.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            stm.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            tbvUsuarios.refresh();
+        }else {
+            sc.sinConexion();
         }
-        tbvUsuarios.refresh();
+
     }
 
-    public void Regresar(){
+    public void Regresar() {
         HelloApplication.setVista("ventanaServiciosGen");
     }
 
-    public void cerrarSesion(){
+    public void cerrarSesion() {
         HelloApplication.setVista("hello-view");
     }
 
-    public void pane () {
+    public void pane() {
         if (paneVU.isVisible()) {//detectar doble click
             paneVU.setVisible(false);
-        }else {
+        } else {
             paneVU.setVisible(true);
         }
     }
-    public void registrarU(){
+
+    public void registrarU() {
         HelloApplication.setVista("ventanaNuevoUs");
     }
 
-    public void initialize (){
+    public void initialize() {
         usuariosTabla = FXCollections.observableArrayList();
         Actualizar();
         DropShadow sombra = new DropShadow();

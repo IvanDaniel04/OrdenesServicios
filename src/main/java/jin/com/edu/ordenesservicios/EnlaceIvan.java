@@ -1,4 +1,7 @@
 package jin.com.edu.ordenesservicios;
+
+import java.io.IOException;
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -6,17 +9,26 @@ import java.sql.DriverManager;
 public class EnlaceIvan {
     private static Connection c;
 
-    public static Connection getConexion(){
+    public static boolean isConnectedToInternet() {
         try {
-            if(c==null) {
-                String url = "jdbc:mysql://localhost:3306/ordenesservicios";
+            InetAddress inetAddress = InetAddress.getByName("www.google.com");
+            return inetAddress.isReachable(5000);
+        } catch (IOException e) {
 
-                c = DriverManager.getConnection(url, "root", "Stephen2002");
+            return false;
+        }
+    }
+
+    public static Connection getConexion() {
+        try {
+            if (c == null || c.isClosed()) {
+                String url = "jdbc:mysql://65.99.252.253:3306/eduwitco_ordenes";
+                c = DriverManager.getConnection(url, "eduwitco_ordenes", "hoY4VbM(~m?$");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return c;
-
     }
+
 }

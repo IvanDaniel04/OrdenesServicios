@@ -4,21 +4,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="332.0" prefWidth="286.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jin.com.edu.ordenesservicios.creditosController">
-   <children>
-      <ImageView fitHeight="332.0" fitWidth="315.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../creditos.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="28.0" layoutY="301.0" text="Aceptar " textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="227.5" AnchorPane.topAnchor="301.0">
-         <font>
-            <Font name="Bodoni 72 Book" size="13.0" />
-         </font>
-      </Label>
-      <Button fx:id="labCerrar" layoutX="7.0" layoutY="298.0" mnemonicParsing="false" onAction="#cerrarVentana" opacity="0.0" prefHeight="26.0" prefWidth="78.0" />
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="332.0" prefWidth="286.0" xmlns="http://javafx.com/javafx/17"
+            fx:controller="jin.com.edu.ordenesservicios.creditosController">
+    <children>
+        <ImageView fitHeight="332.0" fitWidth="315.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../creditos.png"/>
+            </image>
+        </ImageView>
+        <Label layoutX="28.0" layoutY="301.0" text="Aceptar " textFill="WHITE" AnchorPane.bottomAnchor="10.0"
+               AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="227.5" AnchorPane.topAnchor="301.0">
+            <font>
+                <Font name="Bodoni 72 Book" size="13.0"/>
+            </font>
+        </Label>
+        <Button fx:id="labCerrar" layoutX="7.0" layoutY="298.0" mnemonicParsing="false" onAction="#cerrarVentana"
+                opacity="0.0" prefHeight="26.0" prefWidth="78.0"/>
+    </children>
 </AnchorPane>

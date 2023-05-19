@@ -8,11 +8,8 @@ module jin.com.edu.ordenesservicios {
     exports jin.com.edu.ordenesservicios;
 
 
-
     opens jin.com.edu.ordenesservicios.clases to javafx.fxml;
     exports jin.com.edu.ordenesservicios.clases;
-
-
 
 
 }

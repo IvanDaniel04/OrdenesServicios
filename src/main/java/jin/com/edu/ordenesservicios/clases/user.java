@@ -9,6 +9,16 @@ public class user {
     String sexo;
     int edad;
 
+    public user(String correo1, String contrasena1, String tipo1) {
+        this.correo1 = correo1;
+        this.contrasena1 = contrasena1;
+        this.tipo1 = tipo1;
+    }
+
+    public user(String tipo1) {
+        this.tipo1 = tipo1;
+    }
+
     public String getCorreo1() {
         return correo1;
     }
@@ -65,18 +75,9 @@ public class user {
         this.edad = edad;
     }
 
-    public user(String correo1, String contrasena1, String tipo1) {
-        this.correo1 = correo1;
-        this.contrasena1 = contrasena1;
-        this.tipo1 = tipo1;
-    }
-    public String toString (){
+    public String toString() {
         return this.tipo1;
 
-    }
-
-    public user(String tipo1) {
-        this.tipo1 = tipo1;
     }
 
 

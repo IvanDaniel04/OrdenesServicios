@@ -1,51 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="610.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jin.com.edu.ordenesservicios.VisualizarUsuarioController">
-   <children>
-      <ImageView fitHeight="610.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../usuarios.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="44.0" layoutX="1026.0" layoutY="73.0" onMousePressed="#pane" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../user.png" />
-         </image>
-      </ImageView>
-      <TableView fx:id="tbvUsuarios" layoutX="114.0" layoutY="178.0" prefHeight="300.0" prefWidth="843.0" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="178.0">
-        <columns>
-          <TableColumn fx:id="tbcCorreo" prefWidth="313.1059875488281" text="CORREO" />
-          <TableColumn fx:id="tbcContrasena" minWidth="0.0" prefWidth="310.6449890136719" text="CONTRASEÑA" />
-            <TableColumn fx:id="tbcTipo" minWidth="0.0" prefWidth="218.35498046875" text="TIPO" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnRegresar" layoutX="923.0" layoutY="490.0" mnemonicParsing="false" onAction="#Regresar" prefHeight="31.0" prefWidth="110.0" style="-fx-background-color: #D3D3D; -fx-border-color: #00008B #00008B #00008B #00008B; -fx-background-radius: 6; -fx-border-radius: 6;" text="REGRESAR">
-         <font>
-            <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
-         </font>
-      </Button>
-      <Pane fx:id="paneVU" layoutX="856.0" layoutY="120.0" prefHeight="143.0" prefWidth="200.0" style="-fx-background-color: #F8F8FF#F8F8FF; -fx-border-color: #00008B#00008B;" visible="false">
-         <children>
-            <Button layoutX="14.0" layoutY="82.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="22.0" prefWidth="178.0" style="-fx-background-color: #DCDCDC#DCDCDC; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;" text="CERRAR SESIÓN">
-               <font>
-                  <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
-               </font>
-            </Button>
-            <Button layoutX="13.0" layoutY="41.0" mnemonicParsing="false" onAction="#registrarU" prefHeight="28.0" prefWidth="178.0" style="-fx-background-color: #DCDCDC#DCDCDC; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;" text="REGISTRAR USUARIO">
-               <font>
-                  <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="610.0" prefWidth="1080.0"
+            xmlns="http://javafx.com/javafx/17"
+            fx:controller="jin.com.edu.ordenesservicios.VisualizarUsuarioController">
+    <children>
+        <ImageView fitHeight="610.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../usuarios.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="40.0" fitWidth="44.0" layoutX="1026.0" layoutY="73.0" onMousePressed="#pane"
+                   pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../user.png"/>
+            </image>
+        </ImageView>
+        <TableView fx:id="tbvUsuarios" layoutX="114.0" layoutY="178.0" prefHeight="300.0" prefWidth="843.0"
+                   AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="123.0"
+                   AnchorPane.topAnchor="178.0">
+            <columns>
+                <TableColumn fx:id="tbcCorreo" prefWidth="313.1059875488281" text="CORREO"/>
+                <TableColumn fx:id="tbcContrasena" minWidth="0.0" prefWidth="310.6449890136719" text="CONTRASEÑA"/>
+                <TableColumn fx:id="tbcTipo" minWidth="0.0" prefWidth="218.35498046875" text="TIPO"/>
+            </columns>
+        </TableView>
+        <Button fx:id="btnRegresar" layoutX="923.0" layoutY="490.0" mnemonicParsing="false" onAction="#Regresar"
+                prefHeight="31.0" prefWidth="110.0"
+                style="-fx-background-color: #D3D3D; -fx-border-color: #00008B #00008B #00008B #00008B; -fx-background-radius: 6; -fx-border-radius: 6;"
+                text="REGRESAR">
+            <font>
+                <Font name="Bodoni 72 Oldstyle Book" size="13.0"/>
+            </font>
+        </Button>
+        <Pane fx:id="paneVU" layoutX="856.0" layoutY="120.0" prefHeight="143.0" prefWidth="200.0"
+              style="-fx-background-color: #F8F8FF#F8F8FF; -fx-border-color: #00008B#00008B;" visible="false">
+            <children>
+                <Button layoutX="14.0" layoutY="82.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="22.0"
+                        prefWidth="178.0"
+                        style="-fx-background-color: #DCDCDC#DCDCDC; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;"
+                        text="CERRAR SESIÓN">
+                    <font>
+                        <Font name="Bodoni 72 Oldstyle Book" size="13.0"/>
+                    </font>
+                </Button>
+                <Button layoutX="13.0" layoutY="41.0" mnemonicParsing="false" onAction="#registrarU" prefHeight="28.0"
+                        prefWidth="178.0"
+                        style="-fx-background-color: #DCDCDC#DCDCDC; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;"
+                        text="REGISTRAR USUARIO">
+                    <font>
+                        <Font name="Bodoni 72 Oldstyle Book" size="13.0"/>
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

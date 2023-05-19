@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="75.0" prefWidth="230.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jin.com.edu.ordenesservicios.camposController">
+   <children>
+      <Label layoutX="12.0" layoutY="26.0" prefWidth="206.0" text="¡Hay campos vacíos!">
+         <font>
+            <Font name="Bookshelf Symbol 7" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
