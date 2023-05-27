@@ -113,12 +113,7 @@ public class usuario implements Initializable {
                     ResultSet r1 = stme.executeQuery(existe);
 
                     if (r1.next()) {
-                /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("¡¡¡¡¡¡ ESTE USUARIO YA EXISTE !!!!!!");
-                alert.showAndWait();
 
-                 */
                         Stage stage1 = new Stage();//Crear una nueva ventana
                         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("usuarioExistente.fxml"));
                         Scene escena1 = new Scene(loader1.load());
