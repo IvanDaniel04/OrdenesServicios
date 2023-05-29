@@ -154,6 +154,13 @@ public class usuario implements Initializable {
                             tipo.getSelectionModel().select(-1);
                             sexo.getSelectionModel().select(-1);
                             Cobcorreo.getSelectionModel().select(-1);
+                            labAltipo.setVisible(false);
+                            labAlEdad.setVisible(false);
+                            labAlsexo.setVisible(false);
+                            labAlNombre.setVisible(false);
+                            labAlconfin.setVisible(false);
+                            labAlAreaCon.setVisible(false);
+                            labAlApellido.setVisible(false);
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setHeaderText(null);
                             alert.setTitle("REGISTRO EXITOSO!!!!!!");
