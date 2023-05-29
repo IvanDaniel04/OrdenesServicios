@@ -1,166 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="610.0" prefWidth="1080.0"
-            xmlns="http://javafx.com/javafx/17" fx:controller="jin.com.edu.ordenesservicios.usuario">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="610.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jin.com.edu.ordenesservicios.usuario">
     <children>
-        <ImageView fitHeight="610.0" fitWidth="1080.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true"
-                   AnchorPane.bottomAnchor="3.39202880859375">
+        <ImageView fitHeight="610.0" fitWidth="1080.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.39202880859375">
             <image>
-                <Image url="@../../../../Diseño%20del%20sistema-4.png"/>
+                <Image url="@../../../../Diseño%20del%20sistema-4.png" />
             </image>
         </ImageView>
-        <ComboBox fx:id="tipo" layoutX="851.0" layoutY="321.0" opacity="0.0" prefHeight="37.0" prefWidth="202.0"
-                  style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;"
-                  AnchorPane.bottomAnchor="253.39202880859375"/>
-        <ImageView fitHeight="84.0" fitWidth="74.0" layoutX="967.0" layoutY="77.0" onMousePressed="#pane"
-                   pickOnBounds="true" preserveRatio="true">
+        <ComboBox fx:id="tipo" layoutX="851.0" layoutY="321.0" opacity="0.0" prefHeight="37.0" prefWidth="202.0" promptText="Selecciona..." style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="253.39202880859375" />
+        <ImageView fitHeight="84.0" fitWidth="74.0" layoutX="967.0" layoutY="77.0" onMousePressed="#pane" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../user.png"/>
+                <Image url="@../../../../user.png" />
             </image>
         </ImageView>
-        <Button layoutX="910.0" layoutY="486.0" mnemonicParsing="false" onAction="#registar" prefHeight="34.0"
-                prefWidth="128.0"
-                style="-fx-background-color: #D3D3D3#D3D3D3 #D3D3D3#D3D3D3; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;"
-                text="GUARDAR" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="910.0"
-                AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="486.0">
+        <Button layoutX="910.0" layoutY="486.0" mnemonicParsing="false" onAction="#registar" prefHeight="34.0" prefWidth="128.0" style="-fx-background-color: #D3D3D3#D3D3D3 #D3D3D3#D3D3D3; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;" text="GUARDAR" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="910.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="486.0">
             <font>
-                <Font name="Bodoni 72 Oldstyle Book" size="13.0"/>
+                <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
             </font>
         </Button>
-        <Button layoutX="743.0" layoutY="487.0" mnemonicParsing="false" onAction="#regresar" prefHeight="42.0"
-                prefWidth="135.0"
-                style="-fx-background-color: #D3D3D3#D3D3D3 #D3D3D3#D3D3D3; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;"
-                text="REGRESAR" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="743.0"
-                AnchorPane.rightAnchor="202.0" AnchorPane.topAnchor="487.0">
+        <Button layoutX="743.0" layoutY="487.0" mnemonicParsing="false" onAction="#regresar" prefHeight="42.0" prefWidth="135.0" style="-fx-background-color: #D3D3D3#D3D3D3 #D3D3D3#D3D3D3; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;" text="REGRESAR" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="743.0" AnchorPane.rightAnchor="202.0" AnchorPane.topAnchor="487.0">
             <font>
-                <Font name="Bodoni 72 Oldstyle Book" size="13.0"/>
+                <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
             </font>
         </Button>
-        <Label fx:id="labAlerta" alignment="CENTER" layoutX="433.0" layoutY="349.0" prefHeight="28.0" prefWidth="477.0"
-               text="Ingresa un correo valido" textFill="#f20707" visible="false">
+        <Label fx:id="labAlerta" alignment="CENTER" layoutX="433.0" layoutY="349.0" prefHeight="28.0" prefWidth="477.0" text="Ingresa un correo valido" textFill="#f20707" visible="false">
             <font>
-                <Font name="DIN Alternate Bold" size="18.0"/>
+                <Font name="DIN Alternate Bold" size="18.0" />
             </font>
             <opaqueInsets>
-                <Insets top="-30.0"/>
+                <Insets top="-30.0" />
             </opaqueInsets>
         </Label>
-        <TextField fx:id="txtNombre" layoutX="4.0" layoutY="187.0" opacity="0.0" prefHeight="35.0" prefWidth="326.0"
-                   style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="389.0"
-                   AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="750.0" AnchorPane.topAnchor="187.0"/>
-        <TextField fx:id="txtAreaConocimiento" layoutX="295.0" layoutY="245.0" opacity="0.0" prefHeight="35.0"
-                   prefWidth="433.0" style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;"
-                   AnchorPane.bottomAnchor="332.0" AnchorPane.topAnchor="245.0"/>
-        <TextField fx:id="txtEdad" layoutX="753.0" layoutY="188.0" opacity="0.0" prefHeight="35.0" prefWidth="139.0"
-                   style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="388.0"
-                   AnchorPane.leftAnchor="753.0" AnchorPane.rightAnchor="188.0" AnchorPane.topAnchor="188.0"/>
-        <ComboBox fx:id="sexo" layoutX="823.0" layoutY="236.0" opacity="0.0" prefHeight="36.0" prefWidth="138.0"
-                  style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="339.0"
-                  AnchorPane.leftAnchor="823.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="236.0"/>
-        <TextField fx:id="txtContraseña" layoutX="295.0" layoutY="418.0" opacity="0.0" prefHeight="34.0"
-                   prefWidth="336.0" style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" visible="false"
-                   AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="167.0" AnchorPane.rightAnchor="579.0"
-                   AnchorPane.topAnchor="418.0"/>
-        <TextField fx:id="txtCorreo" layoutX="142.0" layoutY="323.0" opacity="0.0" prefHeight="34.0" prefWidth="253.0"
-                   style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="254.0"
-                   AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="685.0" AnchorPane.topAnchor="323.0"/>
-        <Label fx:id="labAlerta1" alignment="CENTER" layoutX="443.0" layoutY="359.0" prefHeight="28.0" prefWidth="477.0"
-               text="Ingresa un correo valido" textFill="#f20707" visible="false">
+        <TextField fx:id="txtNombre" layoutX="4.0" layoutY="187.0" opacity="0.0" prefHeight="35.0" prefWidth="326.0" style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="750.0" AnchorPane.topAnchor="187.0" />
+        <TextField fx:id="txtAreaConocimiento" layoutX="295.0" layoutY="245.0" opacity="0.0" prefHeight="35.0" prefWidth="433.0" style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="332.0" AnchorPane.topAnchor="245.0" />
+        <TextField fx:id="txtEdad" layoutX="753.0" layoutY="188.0" opacity="0.0" prefHeight="35.0" prefWidth="139.0" style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="388.0" AnchorPane.leftAnchor="753.0" AnchorPane.rightAnchor="188.0" AnchorPane.topAnchor="188.0" />
+        <ComboBox fx:id="sexo" layoutX="823.0" layoutY="236.0" opacity="0.0" prefHeight="36.0" prefWidth="138.0" promptText="Selecciona..." style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="339.0" AnchorPane.leftAnchor="823.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="236.0" />
+        <TextField fx:id="txtContraseña" layoutX="295.0" layoutY="418.0" opacity="0.0" prefHeight="34.0" prefWidth="336.0" style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" visible="false" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="167.0" AnchorPane.rightAnchor="579.0" AnchorPane.topAnchor="418.0" />
+        <TextField fx:id="txtCorreo" layoutX="142.0" layoutY="323.0" opacity="0.0" prefHeight="34.0" prefWidth="253.0" style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="254.0" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="685.0" AnchorPane.topAnchor="323.0" />
+        <Label fx:id="labAlerta1" alignment="CENTER" layoutX="443.0" layoutY="359.0" prefHeight="28.0" prefWidth="477.0" text="Ingresa un correo valido" textFill="#f20707" visible="false">
             <font>
-                <Font name="DIN Alternate Bold" size="18.0"/>
+                <Font name="DIN Alternate Bold" size="18.0" />
             </font>
             <opaqueInsets>
-                <Insets top="-30.0"/>
+                <Insets top="-30.0" />
             </opaqueInsets>
         </Label>
-        <PasswordField fx:id="psfContraseña" layoutX="167.0" layoutY="418.0" opacity="0.0" prefHeight="34.0"
-                       prefWidth="335.0" style="-fx-border-color: #00008B #00008B #00008B #00008B; -fx-opacity: 0.5;"
-                       AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="167.0" AnchorPane.rightAnchor="579.0"
-                       AnchorPane.topAnchor="418.0"/>
-        <ComboBox fx:id="Cobcorreo" layoutX="413.0" layoutY="327.0" opacity="0.0" prefHeight="36.0" prefWidth="251.0"
-                  style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="254.0"/>
-        <TextField fx:id="txtApellido" layoutX="371.0" layoutY="188.0" opacity="0.0" prefHeight="35.0" prefWidth="326.0"
-                   style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="389.0"
-                   AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="187.0"/>
-        <PasswordField fx:id="psfContraseñaConf" layoutX="709.0" layoutY="422.0" opacity="0.0" prefHeight="34.0"
-                       prefWidth="335.0" style="-fx-border-color: #00008B #00008B #00008B #00008B; -fx-opacity: 0.5;"
-                       AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="709.0" AnchorPane.rightAnchor="36.0"
-                       AnchorPane.topAnchor="418.0"/>
-        <TextField fx:id="txtContraseñaConf" layoutX="738.0" layoutY="421.0" opacity="0.0" prefHeight="34.0"
-                   prefWidth="336.0" style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" visible="false"
-                   AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="709.0" AnchorPane.rightAnchor="36.0"
-                   AnchorPane.topAnchor="419.0"/>
-        <CheckBox fx:id="mostrarContraseña" layoutX="37.0" layoutY="481.0" mnemonicParsing="false"
-                  onAction="#contraseña" prefHeight="39.0" prefWidth="240.0" text="Mostrar contraseña ">
+        <PasswordField fx:id="psfContraseña" layoutX="167.0" layoutY="418.0" opacity="0.0" prefHeight="34.0" prefWidth="335.0" style="-fx-border-color: #00008B #00008B #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="167.0" AnchorPane.rightAnchor="579.0" AnchorPane.topAnchor="418.0" />
+        <ComboBox fx:id="Cobcorreo" layoutX="413.0" layoutY="327.0" opacity="0.0" prefHeight="36.0" prefWidth="251.0" promptText="Selecciona el dominio..." style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="254.0" />
+        <TextField fx:id="txtApellido" layoutX="371.0" layoutY="188.0" opacity="0.0" prefHeight="35.0" prefWidth="326.0" style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="187.0" />
+        <PasswordField fx:id="psfContraseñaConf" layoutX="709.0" layoutY="422.0" opacity="0.0" prefHeight="34.0" prefWidth="335.0" style="-fx-border-color: #00008B #00008B #00008B #00008B; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="709.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="418.0" />
+        <TextField fx:id="txtContraseñaConf" layoutX="738.0" layoutY="421.0" opacity="0.0" prefHeight="34.0" prefWidth="336.0" style="-fx-border-color: #00008B #00008B; -fx-opacity: 0.5;" visible="false" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="709.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="419.0" />
+        <CheckBox fx:id="mostrarContraseña" layoutX="37.0" layoutY="481.0" mnemonicParsing="false" onAction="#contraseña" prefHeight="39.0" prefWidth="240.0" text="Mostrar contraseña ">
             <font>
-                <Font name="Bodoni 72 Oldstyle Book" size="19.0"/>
+                <Font name="Bodoni 72 Oldstyle Book" size="19.0" />
             </font>
         </CheckBox>
-        <Label fx:id="labAlconfin" alignment="CENTER" layoutX="795.0" layoutY="453.0" text="La contraseña no coincide"
-               textFill="RED" visible="false">
+        <Label fx:id="labAlconfin" alignment="CENTER" layoutX="795.0" layoutY="453.0" text="La contraseña no coincide" textFill="RED" visible="false">
             <font>
-                <Font name="Bodoni 72 Oldstyle Book" size="15.0"/>
+                <Font name="Bodoni 72 Oldstyle Book" size="15.0" />
             </font>
         </Label>
-        <Label fx:id="labAlNombre" alignment="CENTER" layoutX="62.0" layoutY="227.0" text="Este campo es obligatorio "
-               textFill="RED" visible="false">
+        <Label fx:id="labAlNombre" alignment="CENTER" layoutX="62.0" layoutY="227.0" text="Este campo es obligatorio " textFill="RED" visible="false">
             <font>
-                <Font name="Bodoni 72 Oldstyle Book" size="15.0"/>
+                <Font name="Bodoni 72 Oldstyle Book" size="15.0" />
             </font>
         </Label>
-        <Label fx:id="labAlAreaCon" alignment="CENTER" layoutX="429.0" layoutY="286.0" text="Este campo es obligatorio "
-               textFill="RED" visible="false">
+        <Label fx:id="labAlAreaCon" alignment="CENTER" layoutX="429.0" layoutY="286.0" text="Este campo es obligatorio " textFill="RED" visible="false">
             <font>
-                <Font name="Bodoni 72 Oldstyle Book" size="15.0"/>
+                <Font name="Bodoni 72 Oldstyle Book" size="15.0" />
             </font>
         </Label>
-        <Label fx:id="labAlApellido" alignment="CENTER" layoutX="455.0" layoutY="226.0"
-               text="Este campo es obligatorio " textFill="RED" visible="false">
+        <Label fx:id="labAlApellido" alignment="CENTER" layoutX="455.0" layoutY="226.0" text="Este campo es obligatorio " textFill="RED" visible="false">
             <font>
-                <Font name="Bodoni 72 Oldstyle Book" size="15.0"/>
+                <Font name="Bodoni 72 Oldstyle Book" size="15.0" />
             </font>
         </Label>
-        <Label fx:id="labAlEdad" alignment="CENTER" layoutX="765.0" layoutY="217.0" text="Este campo es obligatorio "
-               textFill="RED" visible="false">
+        <Label fx:id="labAlEdad" alignment="CENTER" layoutX="765.0" layoutY="217.0" text="Este campo es obligatorio " textFill="RED" visible="false">
             <font>
-                <Font name="Bodoni 72 Oldstyle Book" size="15.0"/>
+                <Font name="Bodoni 72 Oldstyle Book" size="15.0" />
             </font>
         </Label>
-        <Label fx:id="labAlsexo" alignment="CENTER" layoutX="821.0" layoutY="277.0" text="Este campo es obligatorio "
-               textFill="RED" visible="false">
+        <Label fx:id="labAlsexo" alignment="CENTER" layoutX="821.0" layoutY="277.0" text="Este campo es obligatorio " textFill="RED" visible="false">
             <font>
-                <Font name="Bodoni 72 Oldstyle Book" size="15.0"/>
+                <Font name="Bodoni 72 Oldstyle Book" size="15.0" />
             </font>
         </Label>
-        <Label fx:id="labAltipo" alignment="CENTER" layoutX="871.0" layoutY="363.0" text="Este campo es obligatorio "
-               textFill="RED" visible="false">
+        <Label fx:id="labAltipo" alignment="CENTER" layoutX="871.0" layoutY="363.0" text="Este campo es obligatorio " textFill="RED" visible="false">
             <font>
-                <Font name="Bodoni 72 Oldstyle Book" size="15.0"/>
+                <Font name="Bodoni 72 Oldstyle Book" size="15.0" />
             </font>
         </Label>
-        <Pane fx:id="paneUsr" layoutX="856.0" layoutY="164.0" prefHeight="143.0" prefWidth="200.0"
-              style="-fx-background-color: #F8F8FF#F8F8FF; -fx-border-color: #00008B#00008B;" visible="false">
+        <Pane fx:id="paneUsr" layoutX="856.0" layoutY="164.0" prefHeight="143.0" prefWidth="200.0" style="-fx-background-color: #F8F8FF#F8F8FF; -fx-border-color: #00008B#00008B;" visible="false">
             <children>
-                <Button layoutX="13.0" layoutY="38.0" mnemonicParsing="false" onAction="#Vusuarios" prefHeight="22.0"
-                        prefWidth="178.0"
-                        style="-fx-background-color: #DCDCDC#DCDCDC; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;"
-                        text="USUARIOS">
+                <Button layoutX="13.0" layoutY="38.0" mnemonicParsing="false" onAction="#Vusuarios" prefHeight="22.0" prefWidth="178.0" style="-fx-background-color: #DCDCDC#DCDCDC; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;" text="USUARIOS">
                     <font>
-                        <Font name="Bodoni 72 Oldstyle Book" size="13.0"/>
+                        <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
                     </font>
                 </Button>
-                <Button layoutX="13.0" layoutY="88.0" mnemonicParsing="false" onAction="#cerrarSesión" prefHeight="22.0"
-                        prefWidth="178.0"
-                        style="-fx-background-color: #DCDCDC#DCDCDC; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;"
-                        text="CERRAR SESIÓN">
+                <Button layoutX="13.0" layoutY="88.0" mnemonicParsing="false" onAction="#cerrarSesión" prefHeight="22.0" prefWidth="178.0" style="-fx-background-color: #DCDCDC#DCDCDC; -fx-background-radius: 6; -fx-border-color: #00008B #00008B; -fx-border-radius: 6;" text="CERRAR SESIÓN">
                     <font>
-                        <Font name="Bodoni 72 Oldstyle Book" size="13.0"/>
+                        <Font name="Bodoni 72 Oldstyle Book" size="13.0" />
                     </font>
                 </Button>
             </children>
