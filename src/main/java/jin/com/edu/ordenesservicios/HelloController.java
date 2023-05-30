@@ -78,7 +78,6 @@ public class HelloController {
                     rs = pst.executeQuery();
 
                     if (rs.next()) {
-                        System.out.println("Abrir ventana");
                         HelloApplication.setVista("ventanaServiciosGen");
 
                     } else {

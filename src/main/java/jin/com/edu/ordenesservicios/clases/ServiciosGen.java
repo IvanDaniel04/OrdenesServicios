@@ -8,14 +8,24 @@ public class ServiciosGen {
     private String fecha;
     private String nombresolicitante;
     private String ubicacion;
+    private String estado;
 
-    public ServiciosGen(int id, String area, String descripcion, String fecha, String nombresolicitante, String ubicacion) {
+    public ServiciosGen(int id, String area, String descripcion, String fecha, String nombresolicitante, String ubicacion, String estado) {
         this.id = id;
         this.area = area;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.nombresolicitante = nombresolicitante;
         this.ubicacion = ubicacion;
+        this.estado = estado;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public int getId() {

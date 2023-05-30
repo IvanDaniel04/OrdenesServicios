@@ -60,7 +60,7 @@ public class modificarController {
             try {
                 Connection c = EnlaceIvan.getConexion();
                 Statement stm = c.createStatement();
-                String sql = "SELECT * FROM personal";
+                String sql = "SELECT * FROM personal WHERE id IN (SELECT idPersonal FROM usuarios WHERE tipo != 'A')";
                 ResultSet r = stm.executeQuery(sql);
                 personalLista.clear();
                 while (r.next()) {
@@ -81,7 +81,6 @@ public class modificarController {
     public void seleccionarPersonalEnComboBox(String nombrePersonal) {
         for (Personal p : personalLista) {
             if (p.getNombre().equals(nombrePersonal)) {
-                System.out.println(p.getNombre());
                 cbOperadores.setValue(p);
                 break;
             }
@@ -110,7 +109,7 @@ public class modificarController {
 
                 // Verificar si alguno de los campos está vacío o sin valor
                 if (cbestatus.getSelectionModel().isEmpty() || fecha == null || observacion.isEmpty() || tiempoEstimado.isEmpty() || solicitud.isEmpty() || cbOperadores.getSelectionModel().isEmpty()) {
-                    System.out.println("Alguno de los campos está vacío o sin valor");
+
                     try {
                         Stage stage = new Stage();//Crear una nueva ventana
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("camposVacios.fxml"));
@@ -126,11 +125,9 @@ public class modificarController {
                 }
                 String sql = "UPDATE tareaservico SET status = '" + cbestatus.getSelectionModel().getSelectedItem().toString().charAt(0) + "', fecha = '" + fecha + "', observacion = '" + observacion + "', tiempoestimado = '" + tiempoEstimado + "', solicitud = '" + solicitud + "', personal = '" + cbOperadores.getSelectionModel().getSelectedItem().toString2() + "' WHERE id = '" + solicitud + "';";
                 System.out.println(stm.executeUpdate(sql));
-                System.out.println(solicitud);
                 stm.close();
             } catch (Exception e) {
                 System.out.println(e);
-                System.out.println("NO FUNCIONA LA CONSULTA");
             }
             regresar();
         } else {

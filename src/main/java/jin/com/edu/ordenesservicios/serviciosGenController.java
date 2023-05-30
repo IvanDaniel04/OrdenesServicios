@@ -45,6 +45,8 @@ public class serviciosGenController {
     @FXML
     private TableColumn clmUbicacion;
     @FXML
+    private TableColumn clmEstado;
+    @FXML
     private ImageView ivUsuarios;
     @FXML
     private Pane paneSerGen;
@@ -59,8 +61,7 @@ public class serviciosGenController {
         public void run() {
             while (true) {
                 try {
-                    //Thread.sleep(60000);
-                    Thread.sleep(1000);
+                    Thread.sleep(20000);
                     if (buscando) {
                         continue;
                     }
@@ -68,23 +69,41 @@ public class serviciosGenController {
                         try {
                             Connection c = EnlaceIvan.getConexion();
                             Statement stm = c.createStatement();
-                            String sql = "SELECT * FROM solicitudes";
+                            String sql = "SELECT s.*, t.status FROM solicitudes s " +
+                                    "JOIN tareaservico t ON s.id = t.solicitud";
                             ResultSet r = stm.executeQuery(sql);
 
-                            // Copiar la lista actual de servicios antes de actualizarla
                             List<ServiciosGen> serviciosNuevos = new ArrayList<>();
                             while (r.next()) {
+                                String estado = ""; // Variable para almacenar el estado en forma de texto
+                                switch (r.getString("status").charAt(0)) {
+                                    case 'T':
+                                        estado = "Terminado";
+                                        break;
+                                    case 'N':
+                                        estado = "No Atendido";
+                                        break;
+                                    case 'E':
+                                        estado = "En Espera";
+                                        break;
+                                    case 'A':
+                                        estado = "Atendido";
+                                        break;
+                                }
+
                                 ServiciosGen servicio = new ServiciosGen(
                                         r.getInt("id"),
                                         r.getString("area"),
                                         r.getString("descripcion"),
                                         r.getString("fecha"),
                                         r.getString("nombresolicitante"),
-                                        r.getString("ubicacion")
+                                        r.getString("ubicacion"),
+                                        estado // Asignar el estado en forma de texto
                                 );
                                 serviciosNuevos.add(servicio);
                             }
                             stm.close();
+
                             List<ServiciosGen> serviciosEliminar = new ArrayList<>(serviciosAntiguos);
                             serviciosEliminar.removeAll(serviciosNuevos);
                             tablaObservable.eliminarServicios(serviciosEliminar);
@@ -94,13 +113,11 @@ public class serviciosGenController {
                             serviciosAntiguos = serviciosNuevos;
 
                         } catch (Exception e) {
-
+                            e.printStackTrace();
                         }
                     } else {
-                        System.out.println("No hay conexion");
+                        sc.sinConexion();
                     }
-
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -135,7 +152,7 @@ public class serviciosGenController {
                         try {
                             mc.setID(sg.getId());
                             int id = sg.getId();
-                            System.out.println("ID POTENTE" + sg.getId());
+
                             try {
                                 Connection c = EnlaceIvan.getConexion();
                                 Statement stm = c.createStatement();
@@ -189,7 +206,6 @@ public class serviciosGenController {
 
                             }
 
-                            System.out.println("Espere se está actualizando");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -205,29 +221,47 @@ public class serviciosGenController {
     }
 
     private void actualizarServcios() {
-
         if (EnlaceIvan.isConnectedToInternet()) {
             try {
                 Connection c = EnlaceIvan.getConexion();
                 Statement stm = c.createStatement();
-                String sql = "SELECT * FROM solicitudes";
+                String sql = "SELECT s.*, t.status FROM solicitudes s " +
+                        "JOIN tareaservico t ON s.id = t.solicitud";
                 ResultSet r = stm.executeQuery(sql);
                 servciosGen.clear();
                 while (r.next()) {
                     tblServcios.setItems(servciosGen);
+
+                    String estado = ""; // Variable para almacenar el estado en forma de texto
+                    switch (r.getString("status").charAt(0)) {
+                        case 'T':
+                            estado = "Terminado";
+                            break;
+                        case 'N':
+                            estado = "No Atendido";
+                            break;
+                        case 'E':
+                            estado = "En Espera";
+                            break;
+                        case 'A':
+                            estado = "Atendido";
+                            break;
+                    }
+
                     servciosGen.add(new ServiciosGen(
                             r.getInt("id"),
                             r.getString("area"),
                             r.getString("descripcion"),
                             r.getString("fecha"),
                             r.getString("nombresolicitante"),
-                            r.getString("ubicacion")));
+                            r.getString("ubicacion"), estado)); // Asignar el estado en forma de texto
                     clmId.setCellValueFactory(new PropertyValueFactory<>("id"));
                     clmArea.setCellValueFactory(new PropertyValueFactory<>("area"));
                     clmDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
                     clmFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
                     clmNombreS.setCellValueFactory(new PropertyValueFactory<>("nombresolicitante"));
                     clmUbicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
+                    clmEstado.setCellValueFactory(new PropertyValueFactory<>("estado")); // Agregar columna de estado
                 }
                 stm.close();
 
@@ -235,9 +269,8 @@ public class serviciosGenController {
                 e.printStackTrace();
             }
             tblServcios.refresh();
-
         } else {
-           sc.sinConexion();
+            sc.sinConexion();
         }
 
     }
@@ -249,25 +282,44 @@ public class serviciosGenController {
             try {
                 Connection c = EnlaceIvan.getConexion();
                 Statement stm = c.createStatement();
-                String sql = "SELECT * FROM solicitudes WHERE nombresolicitante LIKE '" + txtBuscar.getText() + "%'";
+                String sql = "SELECT s.*, t.status FROM solicitudes s " +
+                        "JOIN tareaservico t ON s.id = t.solicitud " +
+                        "WHERE s.nombresolicitante LIKE '" + txtBuscar.getText() + "%'";
                 ResultSet r = stm.executeQuery(sql);
                 servciosGen.clear();
                 while (r.next()) {
                     tblServcios.setItems(servciosGen);
+
+                    String estado = "";
+                    switch (r.getString("status").charAt(0)) {
+                        case 'T':
+                            estado = "Terminado";
+                            break;
+                        case 'N':
+                            estado = "No Atendido";
+                            break;
+                        case 'E':
+                            estado = "En Espera";
+                            break;
+                        case 'A':
+                            estado = "Atendido";
+                            break;
+                    }
+
                     servciosGen.add(new ServiciosGen(
                             r.getInt("id"),
                             r.getString("area"),
                             r.getString("descripcion"),
                             r.getString("fecha"),
                             r.getString("nombresolicitante"),
-                            r.getString("ubicacion")));
+                            r.getString("ubicacion"), estado)); // Asignar el estado en forma de texto
                     clmId.setCellValueFactory(new PropertyValueFactory<>("id"));
                     clmArea.setCellValueFactory(new PropertyValueFactory<>("area"));
                     clmDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
                     clmFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
                     clmNombreS.setCellValueFactory(new PropertyValueFactory<>("nombresolicitante"));
                     clmUbicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
-
+                    clmEstado.setCellValueFactory(new PropertyValueFactory<>("estado")); // Agregar columna de estado
                 }
                 stm.close();
 

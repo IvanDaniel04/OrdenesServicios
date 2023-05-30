@@ -18,6 +18,7 @@ public class TablaObserver implements Observer {
     public void update(Observable o, Object arg) {
         List<ServiciosGen> servicios = (List<ServiciosGen>) arg;
         tabla.getItems().setAll(servicios);
+
     }
 }
 
